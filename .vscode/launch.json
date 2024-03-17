@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/src/repositorio/SorteoRepositorio.js"
+            "program": "${workspaceFolder}/server.js"
         }
     ]
 }

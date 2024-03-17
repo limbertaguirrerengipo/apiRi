@@ -57,7 +57,7 @@ exports.SorteoModel = databaseConnection.define('SorteoModel', {
       fechaModificacion: {
         type: DataTypes.DATE,
         field:'fechaModificacion',
-        allowNull: false,
+        allowNull: true,
       },
       usuarioCreacion: {
         type: DataTypes.STRING(50),
@@ -67,7 +67,7 @@ exports.SorteoModel = databaseConnection.define('SorteoModel', {
       usuarioModificacion: {
         type: DataTypes.STRING(50),
         field:'usuarioModificacion',
-        allowNull: false,
+        allowNull: true,
       },
 }, {
     tableName: 'Sorteo',

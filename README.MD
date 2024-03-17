@@ -12,3 +12,21 @@
     pass:       admin
 
  
+ #servicio Sorteo
+ - registrar Sorteo
+ - actualizar Sorteo
+ - Eliminar Sorteo
+  
+
+
+# cliente SOMME.COM 30mb
+workstation id=bdRifas.mssql.somee.com;
+packet size=4096;
+user id= limbert_SQLLogin_1 
+pwd=on1eikg1fp;
+data source= bdRifas.mssql.somee.com ;
+persist security info=False;
+initial catalog= bdRifas ;
+TrustServerCertificate=True
+
+on1eikg1fp

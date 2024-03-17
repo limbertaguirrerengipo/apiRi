@@ -3,3 +3,15 @@
 
 # Archivos generados por npm
 package-lock.json
+
+
+# Archivos *.log
+*.log
+
+# Carpeta de Log en src
+logs/general/
+/src/.DS_Store
+
+# Archivos de Configuracion en src/Config
+/src/config/*.json
+/src/config/database.json
