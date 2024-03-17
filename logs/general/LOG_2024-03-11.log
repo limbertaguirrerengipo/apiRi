@@ -1,0 +1,22 @@
+2024-03-11 21:17:53 info - 1710204689586: LoginControllers > login > Inicio del servicio login, {
+    "parameterHeaders": {
+        "host": "localhost:4004",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"",
+        "sec-ch-ua-mobile": "?0",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "usuario": "54544fgf",
+        "password": "fgfgfg",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "origin": "http://localhost:3000",
+        "sec-fetch-site": "same-site",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://localhost:3000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "es-419,es;q=0.9",
+        "if-none-match": "W/\"179-/oNl1s2Fdt+5+Bap5il0gCnhT9Y\""
+    }
+}

@@ -1,0 +1,13 @@
+2024-03-14 23:03:38 info - 1710471692428: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.36.3",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "801104e3-4f78-4be1-8006-eb45cfbd38cb",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "0"
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "development": {
+        "serverConfigurations": {
+            "port": 4004,
+            "url": "http://localhost:4004"
+        },
+        "apiVersions": [
+            "v1"
+        ],
+        "authorizedUsers": {
+            "admin": "admin"
+        },
+        "disableMail": true,
+        "activarBasicAuth": true
+    }
+    
+}

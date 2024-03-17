@@ -1,0 +1,197 @@
+2024-03-06 22:15:42 info - 1709777735653: [object Object]
+2024-03-06 22:40:59 info - 1709777766965: [object Object]
+2024-03-06 22:43:04 info - 1709777766965: [object Object]
+2024-03-06 22:43:40 info - 1709777766965: [object Object]
+2024-03-06 22:44:07 info - 1709777766965: [object Object]
+2024-03-06 22:47:15 info - 1709779623048: [object Object]
+2024-03-06 22:47:51 info - 1709779657476: [object Object]
+2024-03-06 22:50:39 info - 1709779823517: [object Object]
+2024-03-06 22:54:21 info - 1709780051520: [object Object]
+2024-03-06 22:54:32 info - 1709780051520: [object Object]
+2024-03-06 22:57:07 info - 1709780207355: LoginControllers > login > Inicio del servicio login, {
+    "parameterHeaders": {
+        "host": "localhost:4004",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"",
+        "sec-ch-ua-mobile": "?0",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "usuario": "abc",
+        "password": "abc",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "origin": "http://localhost:3000",
+        "sec-fetch-site": "same-site",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://localhost:3000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "es-ES,es;q=0.9"
+    }
+}
+2024-03-06 22:58:22 info - 1709780293945: LoginControllers > login > Inicio del servicio login, {
+    "parameterHeaders": {
+        "usuario": "laguirre",
+        "password": "1234",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.33.0",
+        "accept": "*/*",
+        "postman-token": "d43643bd-7d4f-46b8-9fe7-8a3d509f7f5b",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive"
+    }
+}
+2024-03-06 23:01:14 info - 1709780293945: LoginControllers > login > Inicio del servicio login, {
+    "parameterHeaders": {
+        "host": "localhost:4004",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"",
+        "sec-ch-ua-mobile": "?0",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "usuario": "23423",
+        "password": "234234",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "origin": "http://localhost:3000",
+        "sec-fetch-site": "same-site",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://localhost:3000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "es-ES,es;q=0.9"
+    }
+}
+2024-03-06 23:02:16 info - 1709780293945: LoginControllers > login > Inicio del servicio login, {
+    "parameterHeaders": {
+        "host": "localhost:4004",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"",
+        "sec-ch-ua-mobile": "?0",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "usuario": "sasa",
+        "password": "wwewe",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "origin": "http://localhost:3000",
+        "sec-fetch-site": "same-site",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://localhost:3000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "es-ES,es;q=0.9",
+        "if-none-match": "W/\"17b-C5Yf0VREXIf9ZD5fMOvazb8bREg\""
+    }
+}
+2024-03-06 23:04:54 info - 1709780293945: LoginControllers > login > Inicio del servicio login, {
+    "parameterHeaders": {
+        "host": "localhost:4004",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"",
+        "sec-ch-ua-mobile": "?0",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "usuario": "limbert",
+        "password": "232323",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "origin": "http://localhost:3000",
+        "sec-fetch-site": "same-site",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://localhost:3000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "es-ES,es;q=0.9",
+        "if-none-match": "W/\"17b-C5Yf0VREXIf9ZD5fMOvazb8bREg\""
+    }
+}
+2024-03-06 23:09:00 info - 1709780293945: LoginControllers > login > Inicio del servicio login, {
+    "parameterHeaders": {
+        "host": "localhost:4004",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"",
+        "sec-ch-ua-mobile": "?0",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "usuario": "qqqqq",
+        "password": "qqqqq",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "origin": "http://localhost:3000",
+        "sec-fetch-site": "same-site",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://localhost:3000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "es-ES,es;q=0.9",
+        "if-none-match": "W/\"17b-C5Yf0VREXIf9ZD5fMOvazb8bREg\""
+    }
+}
+2024-03-06 23:17:58 info - 1709780293945: LoginControllers > login > Inicio del servicio login, {
+    "parameterHeaders": {
+        "host": "localhost:4004",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"",
+        "sec-ch-ua-mobile": "?0",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "usuario": "wwwww",
+        "password": "wwww",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "origin": "http://localhost:3000",
+        "sec-fetch-site": "same-site",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://localhost:3000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "es-ES,es;q=0.9",
+        "if-none-match": "W/\"17b-C5Yf0VREXIf9ZD5fMOvazb8bREg\""
+    }
+}
+2024-03-06 23:18:42 info - 1709781514781: LoginControllers > login > Inicio del servicio login, {
+    "parameterHeaders": {
+        "host": "localhost:4004",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"",
+        "sec-ch-ua-mobile": "?0",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "usuario": "eweww",
+        "password": "232323",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "origin": "http://localhost:3000",
+        "sec-fetch-site": "same-site",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://localhost:3000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "es-ES,es;q=0.9",
+        "if-none-match": "W/\"17b-C5Yf0VREXIf9ZD5fMOvazb8bREg\""
+    }
+}
+2024-03-06 23:19:36 info - 1709781514781: LoginControllers > login > Inicio del servicio login, {
+    "parameterHeaders": {
+        "host": "localhost:4004",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"",
+        "sec-ch-ua-mobile": "?0",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "usuario": "32323",
+        "password": "2323",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "origin": "http://localhost:3000",
+        "sec-fetch-site": "same-site",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://localhost:3000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "es-ES,es;q=0.9",
+        "if-none-match": "W/\"179-/oNl1s2Fdt+5+Bap5il0gCnhT9Y\""
+    }
+}

@@ -1,0 +1,29 @@
+const { DataTypes, fn, BOOLEAN } = require('sequelize');
+const databaseConnection = require('./dbAdministrativoFlujoConection');
+
+exports.TipoPagoModel = databaseConnection.define('TipoPagoModel', {
+      idTipoPago: {
+        type: DataTypes.INTEGER,
+        field:'idTipoPago',
+        primaryKey: true,
+        allowNull: false,
+      },
+      nombre: {
+        type: DataTypes.INTEGER,
+        field:'nombre',
+        allowNull: false,
+      },
+      descripcion: {
+        type: DataTypes.STRING,
+        field:'descripcion',
+        allowNull: false,
+      },
+      estado: {
+        type: DataTypes.BOOLEAN,
+        field:'estado',
+        allowNull: true,
+      }
+}, {
+    tableName: 'TipoPago',
+    timestamps: false
+});

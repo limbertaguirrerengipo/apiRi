@@ -1,0 +1,20 @@
+{
+    "development":{
+        "administrativo": {
+            "username":"sa",
+            "password": "Passw0rd",
+            "host": "10.2.10.8",
+            "dialect": "mssql",
+            "dialectOptions": {
+                "options": {
+                    "requestTimeout": 45000
+                }
+            }
+        },
+        "nombre_base_dato": {
+            "administrativo_flujo": "BDAdministrativoFlujo",
+            "bd_pedidos": "bd_pedidos",
+            "bd_presupuesto": "PRESUPUESTO"
+        }
+    }
+}

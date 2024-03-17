@@ -1,0 +1,1 @@
+// aqui se define metodos que acceden a la BD Directamente

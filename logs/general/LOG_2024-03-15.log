@@ -1,0 +1,694 @@
+2024-03-15 21:12:23 info - 1710551527379: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "a096404e-9c86-4df8-859a-6ceabd44ecea",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 21:45:47 info - 1710553540831: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "b4a016d1-e293-4d7f-9ec0-1f1f1c34988a",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 21:46:18 info - 1710553540831: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 21:59:00 info - 1710554281688: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "f71de9ae-5f14-4497-a856-45e9e83f0903",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 21:59:07 info - 1710554281688: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 21:59:36 error - 1710554281688: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {}
+2024-03-15 21:59:36 error - 1710554281688: SorteoService > registrarSorteo > transaction is not defined
+2024-03-15 21:59:36 error - 1710554281688: SorteoService > registrarSorteo > ReferenceError: transaction is not defined
+    at registrarSorteoRepo (D:\proyectoRifas\rifaApi\src\repositorio\SorteoRepositorio.js:17:14)
+    at registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:22:33)
+    at exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:27)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:280:10)
+2024-03-15 21:59:36 error - 1710554281688: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 21:59:36 error - 1710554281688: SorteoControllers > regitrarSorteo > transaction is not defined
+2024-03-15 21:59:36 error - 1710554281688: SorteoControllers > regitrarSorteo > ReferenceError: transaction is not defined
+    at registrarSorteoRepo (D:\proyectoRifas\rifaApi\src\repositorio\SorteoRepositorio.js:17:14)
+    at registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:22:33)
+    at exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:27)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:280:10)
+2024-03-15 22:03:44 info - 1710554424261: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "bb9e72d5-9fbe-44a4-8d3e-5f75c60d9626",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 22:03:49 info - 1710554424261: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 22:03:54 error - 1710554424261: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {}
+2024-03-15 22:03:54 error - 1710554424261: SorteoService > registrarSorteo > Cannot read properties of undefined (reading 'transaction')
+2024-03-15 22:03:54 error - 1710554424261: SorteoService > registrarSorteo > TypeError: Cannot read properties of undefined (reading 'transaction')
+    at registrarSorteoRepo (D:\proyectoRifas\rifaApi\src\repositorio\SorteoRepositorio.js:6:100)
+    at registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:22:33)
+    at exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:27)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:280:10)
+2024-03-15 22:03:54 error - 1710554424261: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 22:03:54 error - 1710554424261: SorteoControllers > regitrarSorteo > Cannot read properties of undefined (reading 'transaction')
+2024-03-15 22:03:54 error - 1710554424261: SorteoControllers > regitrarSorteo > TypeError: Cannot read properties of undefined (reading 'transaction')
+    at registrarSorteoRepo (D:\proyectoRifas\rifaApi\src\repositorio\SorteoRepositorio.js:6:100)
+    at registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:22:33)
+    at exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:27)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:280:10)
+2024-03-15 22:05:50 info - 1710554701249: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "608a50f7-bc1c-4817-99de-e37fea434b92",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 22:05:50 info - 1710554701249: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 22:05:50 error - 1710554701249: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {}
+2024-03-15 22:05:50 error - 1710554701249: SorteoService > registrarSorteo > Cannot read properties of undefined (reading 'transaction')
+2024-03-15 22:05:50 error - 1710554701249: SorteoService > registrarSorteo > TypeError: Cannot read properties of undefined (reading 'transaction')
+    at registrarSorteoRepo (D:\proyectoRifas\rifaApi\src\repositorio\SorteoRepositorio.js:6:100)
+    at registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:22:33)
+    at exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:27)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:280:10)
+2024-03-15 22:05:50 error - 1710554701249: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 22:05:50 error - 1710554701249: SorteoControllers > regitrarSorteo > Cannot read properties of undefined (reading 'transaction')
+2024-03-15 22:05:50 error - 1710554701249: SorteoControllers > regitrarSorteo > TypeError: Cannot read properties of undefined (reading 'transaction')
+    at registrarSorteoRepo (D:\proyectoRifas\rifaApi\src\repositorio\SorteoRepositorio.js:6:100)
+    at registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:22:33)
+    at exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:27)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:280:10)
+2024-03-15 22:06:23 info - 1710554701249: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "28b16fe5-1441-483c-adb2-6349b099687d",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 22:06:23 info - 1710554701249: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 22:06:28 error - 1710554701249: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {}
+2024-03-15 22:06:28 error - 1710554701249: SorteoService > registrarSorteo > Cannot read properties of undefined (reading 'transaction')
+2024-03-15 22:06:28 error - 1710554701249: SorteoService > registrarSorteo > TypeError: Cannot read properties of undefined (reading 'transaction')
+    at registrarSorteoRepo (D:\proyectoRifas\rifaApi\src\repositorio\SorteoRepositorio.js:6:100)
+    at registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:22:33)
+    at exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:27)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:280:10)
+2024-03-15 22:06:28 error - 1710554701249: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 22:06:28 error - 1710554701249: SorteoControllers > regitrarSorteo > Cannot read properties of undefined (reading 'transaction')
+2024-03-15 22:06:28 error - 1710554701249: SorteoControllers > regitrarSorteo > TypeError: Cannot read properties of undefined (reading 'transaction')
+    at registrarSorteoRepo (D:\proyectoRifas\rifaApi\src\repositorio\SorteoRepositorio.js:6:100)
+    at registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:22:33)
+    at exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:27)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:280:10)
+2024-03-15 22:16:31 info - 1710555174241: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "edaf000a-fbe2-4088-b35c-c4c102676986",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 22:16:31 info - 1710555174241: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 22:16:31 error - 1710555174241: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {}
+2024-03-15 22:16:31 error - 1710555174241: SorteoService > registrarSorteo > dbAdministrativoFlujoConection is not defined
+2024-03-15 22:16:31 error - 1710555174241: SorteoService > registrarSorteo > ReferenceError: dbAdministrativoFlujoConection is not defined
+    at registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:22:42)
+    at exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:27)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:175:3)
+2024-03-15 22:16:31 error - 1710555174241: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 22:16:31 error - 1710555174241: SorteoControllers > regitrarSorteo > dbAdministrativoFlujoConection is not defined
+2024-03-15 22:16:31 error - 1710555174241: SorteoControllers > regitrarSorteo > ReferenceError: dbAdministrativoFlujoConection is not defined
+    at registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:22:42)
+    at exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:27)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\layer.js:95:5)
+    at D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\proyectoRifas\rifaApi\node_modules\express\lib\router\index.js:175:3)
+2024-03-15 22:21:06 info - 1710555656850: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "52ef0412-63db-4e44-b925-827ce8d4109c",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 22:21:06 info - 1710555656850: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 22:21:06 error - 1710555656850: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeConnectionError",
+    "parent": {
+        "code": "ESOCKET"
+    },
+    "original": {
+        "code": "ESOCKET"
+    }
+}
+2024-03-15 22:21:06 error - 1710555656850: SorteoService > registrarSorteo > Failed to connect to localhost:1433 - Could not connect (sequence)
+2024-03-15 22:21:06 error - 1710555656850: SorteoService > registrarSorteo > SequelizeConnectionError: Failed to connect to localhost:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 22:21:06 error - 1710555656850: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 22:21:06 error - 1710555656850: SorteoControllers > regitrarSorteo > Failed to connect to localhost:1433 - Could not connect (sequence)
+2024-03-15 22:21:06 error - 1710555656850: SorteoControllers > regitrarSorteo > SequelizeConnectionError: Failed to connect to localhost:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 22:26:19 info - 1710555959819: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "194ecb61-579c-4618-8ae5-1b4c593fff9a",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 22:26:27 info - 1710555959819: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 22:27:33 error - 1710555959819: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeConnectionError",
+    "parent": {
+        "code": "ESOCKET"
+    },
+    "original": {
+        "code": "ESOCKET"
+    }
+}
+2024-03-15 22:27:58 error - 1710555959819: SorteoService > registrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 22:27:58 error - 1710555959819: SorteoService > registrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 22:27:58 error - 1710555959819: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 22:27:58 error - 1710555959819: SorteoControllers > regitrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 22:27:58 error - 1710555959819: SorteoControllers > regitrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 22:29:14 info - 1710555959819: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "73f30290-ae5d-44bc-8674-76322d19427e",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 22:29:31 info - 1710555959819: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 22:30:23 error - 1710555959819: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeConnectionError",
+    "parent": {
+        "code": "ESOCKET"
+    },
+    "original": {
+        "code": "ESOCKET"
+    }
+}
+2024-03-15 22:30:23 error - 1710555959819: SorteoService > registrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 22:30:23 error - 1710555959819: SorteoService > registrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 22:30:23 error - 1710555959819: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 22:30:23 error - 1710555959819: SorteoControllers > regitrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 22:30:23 error - 1710555959819: SorteoControllers > regitrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 22:50:37 info - 1710557401248: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "4a6ffcda-4cbc-4eb2-9e79-fa263cad161d",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 22:50:45 info - 1710557401248: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 22:51:12 error - 1710557401248: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeConnectionError",
+    "parent": {
+        "code": "ESOCKET"
+    },
+    "original": {
+        "code": "ESOCKET"
+    }
+}
+2024-03-15 22:51:13 error - 1710557401248: SorteoService > registrarSorteo > Failed to connect to localhost:1433 - Could not connect (sequence)
+2024-03-15 22:51:13 error - 1710557401248: SorteoService > registrarSorteo > SequelizeConnectionError: Failed to connect to localhost:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 22:51:25 error - 1710557401248: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 22:51:25 error - 1710557401248: SorteoControllers > regitrarSorteo > Failed to connect to localhost:1433 - Could not connect (sequence)
+2024-03-15 22:51:25 error - 1710557401248: SorteoControllers > regitrarSorteo > SequelizeConnectionError: Failed to connect to localhost:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 23:03:53 info - 1710558178477: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "a3d0c2cf-47d4-4112-9cc0-00d11daa006b",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 23:03:58 info - 1710558178477: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 23:04:27 error - 1710558178477: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeConnectionError",
+    "parent": {
+        "code": "ESOCKET"
+    },
+    "original": {
+        "code": "ESOCKET"
+    }
+}
+2024-03-15 23:04:27 error - 1710558178477: SorteoService > registrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 23:04:27 error - 1710558178477: SorteoService > registrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 23:04:27 error - 1710558178477: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 23:04:27 error - 1710558178477: SorteoControllers > regitrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 23:04:27 error - 1710558178477: SorteoControllers > regitrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 23:11:39 info - 1710558693251: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "355097ca-5835-4f52-89bd-6caca4bc03e6",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 23:11:39 info - 1710558693251: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 23:11:43 error - 1710558693251: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeConnectionError",
+    "parent": {
+        "code": "ESOCKET"
+    },
+    "original": {
+        "code": "ESOCKET"
+    }
+}
+2024-03-15 23:11:43 error - 1710558693251: SorteoService > registrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 23:11:43 error - 1710558693251: SorteoService > registrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 23:11:43 error - 1710558693251: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 23:11:43 error - 1710558693251: SorteoControllers > regitrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 23:11:43 error - 1710558693251: SorteoControllers > regitrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 23:17:47 info - 1710559054625: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "629a87d0-d81a-44a1-b197-5ba4cd3fac45",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 23:17:49 info - 1710559054625: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 23:18:08 error - 1710559054625: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeConnectionError",
+    "parent": {
+        "code": "ESOCKET"
+    },
+    "original": {
+        "code": "ESOCKET"
+    }
+}
+2024-03-15 23:18:08 error - 1710559054625: SorteoService > registrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 23:18:08 error - 1710559054625: SorteoService > registrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 23:18:08 error - 1710559054625: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 23:18:08 error - 1710559054625: SorteoControllers > regitrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 23:18:08 error - 1710559054625: SorteoControllers > regitrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 23:20:07 info - 1710559192709: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "4f3c181c-86b8-42d6-b9bd-d9dff36e4881",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-15 23:20:10 info - 1710559192709: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-15 23:20:18 error - 1710559192709: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeConnectionError",
+    "parent": {
+        "code": "ESOCKET"
+    },
+    "original": {
+        "code": "ESOCKET"
+    }
+}
+2024-03-15 23:20:18 error - 1710559192709: SorteoService > registrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 23:20:18 error - 1710559192709: SorteoService > registrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-15 23:20:18 error - 1710559192709: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-15 23:20:18 error - 1710559192709: SorteoControllers > regitrarSorteo > Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+2024-03-15 23:20:18 error - 1710559192709: SorteoControllers > regitrarSorteo > SequelizeConnectionError: Failed to connect to AGUIRRE:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)

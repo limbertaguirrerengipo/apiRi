@@ -1,0 +1,539 @@
+2024-03-16 17:19:08 info - 1710623936090: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.37.0",
+        "accept": "*/*",
+        "cache-control": "no-cache",
+        "postman-token": "dc24290f-2c06-4c97-a621-ecf07253bfb3",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "171"
+    }
+}
+2024-03-16 17:19:10 info - 1710623936090: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-16 17:19:21 error - 1710623936090: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeConnectionError",
+    "parent": {
+        "code": "ESOCKET"
+    },
+    "original": {
+        "code": "ESOCKET"
+    }
+}
+2024-03-16 17:19:21 error - 1710623936090: SorteoService > registrarSorteo > Failed to connect to localhost:1433 - Could not connect (sequence)
+2024-03-16 17:19:21 error - 1710623936090: SorteoService > registrarSorteo > SequelizeConnectionError: Failed to connect to localhost:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-16 17:19:21 error - 1710623936090: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-16 17:19:22 error - 1710623936090: SorteoControllers > regitrarSorteo > Failed to connect to localhost:1433 - Could not connect (sequence)
+2024-03-16 17:19:22 error - 1710623936090: SorteoControllers > regitrarSorteo > SequelizeConnectionError: Failed to connect to localhost:1433 - Could not connect (sequence)
+    at ConnectionManager.connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\mssql\connection-manager.js:112:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:222:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:174:32
+    at async ConnectionManager.getConnection (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\dialects\abstract\connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\transaction.js:85:24)
+    at async D:\proyectoRifas\rifaApi\node_modules\sequelize\lib\sequelize.js:504:7
+    at async registrarSorteo (D:\proyectoRifas\rifaApi\src\services\SorteoService.js:23:42)
+    at async exports.regitrarSorteo (D:\proyectoRifas\rifaApi\src\controllers\SorteoControllers.js:28:21)
+2024-03-16 17:45:13 info - 1710625395773: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.33.0",
+        "accept": "*/*",
+        "postman-token": "19a24e77-8582-4bd9-906b-4b86ec8a2059",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "165"
+    }
+}
+2024-03-16 17:45:13 info - 1710625395773: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-16 17:45:28 error - 1710625395773: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeConnectionError",
+    "parent": {
+        "code": "ETIMEOUT"
+    },
+    "original": {
+        "code": "ETIMEOUT"
+    }
+}
+2024-03-16 17:45:28 error - 1710625395773: SorteoService > registrarSorteo > Failed to connect to 10.2.10.15:1433 in 15000ms
+2024-03-16 17:45:28 error - 1710625395773: SorteoControllers > regitrarSorteo > Failed to connect to 10.2.10.15:1433 in 15000ms
+2024-03-16 17:45:28 error - 1710625395773: SorteoControllers > regitrarSorteo > SequelizeConnectionError: Failed to connect to 10.2.10.15:1433 in 15000ms
+    at ConnectionManager.connect (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/mssql/connection-manager.js:119:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:222:24)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:174:32
+    at async ConnectionManager.getConnection (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/transaction.js:85:24)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:504:7
+    at async registrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:23:42)
+    at async exports.regitrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/controllers/SorteoControllers.js:28:21)
+2024-03-16 17:45:28 error - 1710625395773: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-16 17:45:28 error - 1710625395773: SorteoService > registrarSorteo > SequelizeConnectionError: Failed to connect to 10.2.10.15:1433 in 15000ms
+    at ConnectionManager.connect (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/mssql/connection-manager.js:119:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:222:24)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:174:32
+    at async ConnectionManager.getConnection (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/transaction.js:85:24)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:504:7
+    at async registrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:23:42)
+    at async exports.regitrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/controllers/SorteoControllers.js:28:21)
+2024-03-16 17:47:02 info - 1710625395773: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.33.0",
+        "accept": "*/*",
+        "postman-token": "ad822fe1-165c-4cf1-96e5-4c30630b164d",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "165"
+    }
+}
+2024-03-16 17:47:02 info - 1710625395773: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-16 17:47:03 error - 1710625395773: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeAccessDeniedError",
+    "parent": {
+        "code": "ELOGIN"
+    },
+    "original": {
+        "code": "ELOGIN"
+    }
+}
+2024-03-16 17:47:03 error - 1710625395773: SorteoService > registrarSorteo > Error de inicio de sesión del usuario 'sa'.
+2024-03-16 17:47:03 error - 1710625395773: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-16 17:47:03 error - 1710625395773: SorteoService > registrarSorteo > SequelizeAccessDeniedError: Error de inicio de sesión del usuario 'sa'.
+    at ConnectionManager.connect (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/mssql/connection-manager.js:115:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:222:24)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:174:32
+    at async ConnectionManager.getConnection (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/transaction.js:85:24)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:504:7
+    at async registrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:23:42)
+    at async exports.regitrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/controllers/SorteoControllers.js:28:21)
+2024-03-16 17:47:03 error - 1710625395773: SorteoControllers > regitrarSorteo > Error de inicio de sesión del usuario 'sa'.
+2024-03-16 17:47:03 error - 1710625395773: SorteoControllers > regitrarSorteo > SequelizeAccessDeniedError: Error de inicio de sesión del usuario 'sa'.
+    at ConnectionManager.connect (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/mssql/connection-manager.js:115:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:222:24)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:174:32
+    at async ConnectionManager.getConnection (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:197:7)
+    at async Transaction.prepareEnvironment (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/transaction.js:85:24)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:504:7
+    at async registrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:23:42)
+    at async exports.regitrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/controllers/SorteoControllers.js:28:21)
+2024-03-16 17:48:15 info - 1710625652228: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.33.0",
+        "accept": "*/*",
+        "postman-token": "fce7e4d2-2c53-45d5-848a-7fa9cf27ffdf",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "165"
+    }
+}
+2024-03-16 17:48:15 info - 1710625652228: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-16 17:48:16 error - 1710625652228: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeValidationError",
+    "errors": [
+        {
+            "message": "SorteoModel.fechaCreacion cannot be null",
+            "type": "notNull Violation",
+            "path": "fechaCreacion",
+            "value": null,
+            "origin": "CORE",
+            "instance": {
+                "idSorteo": null,
+                "titulo": "Sorteo de marzo",
+                "cantidadTicket": 100,
+                "precioUnitario": "20.50",
+                "idMoneda": 1,
+                "estado": 1,
+                "descripcion": "Este sorteo es de clientes  que tiene una mascota",
+                "linkReservas": "localhost:300",
+                "usuarioCreacion": "admin"
+            },
+            "validatorKey": "is_null",
+            "validatorName": null,
+            "validatorArgs": []
+        },
+        {
+            "message": "SorteoModel.fechaModificacion cannot be null",
+            "type": "notNull Violation",
+            "path": "fechaModificacion",
+            "value": null,
+            "origin": "CORE",
+            "instance": {
+                "idSorteo": null,
+                "titulo": "Sorteo de marzo",
+                "cantidadTicket": 100,
+                "precioUnitario": "20.50",
+                "idMoneda": 1,
+                "estado": 1,
+                "descripcion": "Este sorteo es de clientes  que tiene una mascota",
+                "linkReservas": "localhost:300",
+                "usuarioCreacion": "admin"
+            },
+            "validatorKey": "is_null",
+            "validatorName": null,
+            "validatorArgs": []
+        },
+        {
+            "message": "SorteoModel.usuarioModificacion cannot be null",
+            "type": "notNull Violation",
+            "path": "usuarioModificacion",
+            "value": null,
+            "origin": "CORE",
+            "instance": {
+                "idSorteo": null,
+                "titulo": "Sorteo de marzo",
+                "cantidadTicket": 100,
+                "precioUnitario": "20.50",
+                "idMoneda": 1,
+                "estado": 1,
+                "descripcion": "Este sorteo es de clientes  que tiene una mascota",
+                "linkReservas": "localhost:300",
+                "usuarioCreacion": "admin"
+            },
+            "validatorKey": "is_null",
+            "validatorName": null,
+            "validatorArgs": []
+        }
+    ]
+}
+2024-03-16 17:48:16 error - 1710625652228: SorteoService > registrarSorteo > notNull Violation: SorteoModel.fechaCreacion cannot be null,
+notNull Violation: SorteoModel.fechaModificacion cannot be null,
+notNull Violation: SorteoModel.usuarioModificacion cannot be null
+2024-03-16 17:48:16 error - 1710625652228: SorteoService > registrarSorteo > SequelizeValidationError: notNull Violation: SorteoModel.fechaCreacion cannot be null,
+notNull Violation: SorteoModel.fechaModificacion cannot be null,
+notNull Violation: SorteoModel.usuarioModificacion cannot be null
+    at InstanceValidator._validate (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:50:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async InstanceValidator._validateAndRunHooks (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:60:7)
+    at async InstanceValidator.validate (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:54:12)
+    at async model.save (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:2426:7)
+    at async SorteoModel.create (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:1362:12)
+    at async registrarSorteoRepo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/repositorio/SorteoRepositorio.js:8:16)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:24:27
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:507:18
+    at async registrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:23:42)
+2024-03-16 17:48:16 error - 1710625652228: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-16 17:48:16 error - 1710625652228: SorteoControllers > regitrarSorteo > notNull Violation: SorteoModel.fechaCreacion cannot be null,
+notNull Violation: SorteoModel.fechaModificacion cannot be null,
+notNull Violation: SorteoModel.usuarioModificacion cannot be null
+2024-03-16 17:48:16 error - 1710625652228: SorteoControllers > regitrarSorteo > SequelizeValidationError: notNull Violation: SorteoModel.fechaCreacion cannot be null,
+notNull Violation: SorteoModel.fechaModificacion cannot be null,
+notNull Violation: SorteoModel.usuarioModificacion cannot be null
+    at InstanceValidator._validate (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:50:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async InstanceValidator._validateAndRunHooks (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:60:7)
+    at async InstanceValidator.validate (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:54:12)
+    at async model.save (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:2426:7)
+    at async SorteoModel.create (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:1362:12)
+    at async registrarSorteoRepo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/repositorio/SorteoRepositorio.js:8:16)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:24:27
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:507:18
+    at async registrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:23:42)
+2024-03-16 17:58:03 info - 1710626271790: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.33.0",
+        "accept": "*/*",
+        "postman-token": "18a743d4-9ad7-490e-b6f9-519feaf1f28a",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "165"
+    }
+}
+2024-03-16 17:58:03 info - 1710626271790: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-16 17:58:04 error - 1710626271790: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeValidationError",
+    "errors": [
+        {
+            "message": "SorteoModel.usuarioModificacion cannot be null",
+            "type": "notNull Violation",
+            "path": "usuarioModificacion",
+            "value": null,
+            "origin": "CORE",
+            "instance": {
+                "idSorteo": null,
+                "titulo": "Sorteo de marzo",
+                "cantidadTicket": 100,
+                "precioUnitario": "20.50",
+                "idMoneda": 1,
+                "estado": 1,
+                "descripcion": "Este sorteo es de clientes  que tiene una mascota",
+                "linkReservas": "localhost:300",
+                "usuarioCreacion": "admin",
+                "fechaCreacion": {
+                    "fn": "GETDATE",
+                    "args": []
+                },
+                "fechaModificacion": {
+                    "fn": "GETDATE",
+                    "args": []
+                }
+            },
+            "validatorKey": "is_null",
+            "validatorName": null,
+            "validatorArgs": []
+        }
+    ]
+}
+2024-03-16 17:58:04 error - 1710626271790: SorteoService > registrarSorteo > notNull Violation: SorteoModel.usuarioModificacion cannot be null
+2024-03-16 17:58:04 error - 1710626271790: SorteoService > registrarSorteo > SequelizeValidationError: notNull Violation: SorteoModel.usuarioModificacion cannot be null
+    at InstanceValidator._validate (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:50:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async InstanceValidator._validateAndRunHooks (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:60:7)
+    at async InstanceValidator.validate (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:54:12)
+    at async model.save (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:2426:7)
+    at async SorteoModel.create (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:1362:12)
+    at async registrarSorteoRepo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/repositorio/SorteoRepositorio.js:8:16)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:24:27
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:507:18
+    at async registrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:23:42)
+2024-03-16 17:58:04 error - 1710626271790: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-16 17:58:04 error - 1710626271790: SorteoControllers > regitrarSorteo > notNull Violation: SorteoModel.usuarioModificacion cannot be null
+2024-03-16 17:58:04 error - 1710626271790: SorteoControllers > regitrarSorteo > SequelizeValidationError: notNull Violation: SorteoModel.usuarioModificacion cannot be null
+    at InstanceValidator._validate (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:50:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async InstanceValidator._validateAndRunHooks (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:60:7)
+    at async InstanceValidator.validate (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/instance-validator.js:54:12)
+    at async model.save (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:2426:7)
+    at async SorteoModel.create (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:1362:12)
+    at async registrarSorteoRepo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/repositorio/SorteoRepositorio.js:8:16)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:24:27
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:507:18
+    at async registrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:23:42)
+2024-03-16 17:58:44 info - 1710626317099: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.33.0",
+        "accept": "*/*",
+        "postman-token": "89c2a94b-d8e3-484d-a6d2-f3240f9af6e1",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "165"
+    }
+}
+2024-03-16 17:58:44 info - 1710626317099: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-16 17:58:45 error - 1710626317099: SorteoService > registrarSorteo > Error de la funcion registrarSorteo, error: {
+    "name": "SequelizeDatabaseError",
+    "parent": {
+        "code": "EREQUEST",
+        "number": 208,
+        "state": 1,
+        "class": 16,
+        "serverName": "PRBSVRCONEXION1",
+        "procName": "",
+        "lineNumber": 1,
+        "sql": "INSERT INTO [Sorteo] ([titulo],[cantidadTicket],[precioUnitario],[linkReservas],[idMoneda],[descripcion],[estado],[fechaCreacion],[fechaModificacion],[usuarioCreacion],[usuarioModificacion]) OUTPUT INSERTED.[idSorteo],INSERTED.[titulo],INSERTED.[cantidadTicket],INSERTED.[precioUnitario],INSERTED.[linkReservas],INSERTED.[fechaSorteo],INSERTED.[idMoneda],INSERTED.[descripcion],INSERTED.[estado],INSERTED.[fechaCreacion],INSERTED.[fechaModificacion],INSERTED.[usuarioCreacion],INSERTED.[usuarioModificacion] VALUES (@0,@1,@2,@3,@4,@5,@6,GETDATE(),GETDATE(),@7,@8);",
+        "parameters": {
+            "0": "Sorteo de marzo",
+            "1": 100,
+            "2": "20.50",
+            "3": "localhost:300",
+            "4": 1,
+            "5": "Este sorteo es de clientes  que tiene una mascota",
+            "6": 1,
+            "7": "admin",
+            "8": "admin"
+        }
+    },
+    "original": {
+        "code": "EREQUEST",
+        "number": 208,
+        "state": 1,
+        "class": 16,
+        "serverName": "PRBSVRCONEXION1",
+        "procName": "",
+        "lineNumber": 1,
+        "sql": "INSERT INTO [Sorteo] ([titulo],[cantidadTicket],[precioUnitario],[linkReservas],[idMoneda],[descripcion],[estado],[fechaCreacion],[fechaModificacion],[usuarioCreacion],[usuarioModificacion]) OUTPUT INSERTED.[idSorteo],INSERTED.[titulo],INSERTED.[cantidadTicket],INSERTED.[precioUnitario],INSERTED.[linkReservas],INSERTED.[fechaSorteo],INSERTED.[idMoneda],INSERTED.[descripcion],INSERTED.[estado],INSERTED.[fechaCreacion],INSERTED.[fechaModificacion],INSERTED.[usuarioCreacion],INSERTED.[usuarioModificacion] VALUES (@0,@1,@2,@3,@4,@5,@6,GETDATE(),GETDATE(),@7,@8);",
+        "parameters": {
+            "0": "Sorteo de marzo",
+            "1": 100,
+            "2": "20.50",
+            "3": "localhost:300",
+            "4": 1,
+            "5": "Este sorteo es de clientes  que tiene una mascota",
+            "6": 1,
+            "7": "admin",
+            "8": "admin"
+        }
+    },
+    "sql": "INSERT INTO [Sorteo] ([titulo],[cantidadTicket],[precioUnitario],[linkReservas],[idMoneda],[descripcion],[estado],[fechaCreacion],[fechaModificacion],[usuarioCreacion],[usuarioModificacion]) OUTPUT INSERTED.[idSorteo],INSERTED.[titulo],INSERTED.[cantidadTicket],INSERTED.[precioUnitario],INSERTED.[linkReservas],INSERTED.[fechaSorteo],INSERTED.[idMoneda],INSERTED.[descripcion],INSERTED.[estado],INSERTED.[fechaCreacion],INSERTED.[fechaModificacion],INSERTED.[usuarioCreacion],INSERTED.[usuarioModificacion] VALUES (@0,@1,@2,@3,@4,@5,@6,GETDATE(),GETDATE(),@7,@8);",
+    "parameters": {
+        "0": "Sorteo de marzo",
+        "1": 100,
+        "2": "20.50",
+        "3": "localhost:300",
+        "4": 1,
+        "5": "Este sorteo es de clientes  que tiene una mascota",
+        "6": 1,
+        "7": "admin",
+        "8": "admin"
+    }
+}
+2024-03-16 17:58:45 error - 1710626317099: SorteoService > registrarSorteo > Invalid object name 'Sorteo'.
+2024-03-16 17:58:45 error - 1710626317099: SorteoService > registrarSorteo > Error
+    at Query.run (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/mssql/query.js:107:25)
+    at /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MSSqlQueryInterface.insert (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/query-interface.js:308:21)
+    at async model.save (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:2490:35)
+    at async SorteoModel.create (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:1362:12)
+    at async registrarSorteoRepo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/repositorio/SorteoRepositorio.js:8:16)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:24:27
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:507:18
+    at async registrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:23:42)
+2024-03-16 17:58:45 error - 1710626317099: SorteoControllers > regitrarSorteo > Error del servicio regitrarSorteo
+2024-03-16 17:58:45 error - 1710626317099: SorteoControllers > regitrarSorteo > Invalid object name 'Sorteo'.
+2024-03-16 17:58:45 error - 1710626317099: SorteoControllers > regitrarSorteo > Error
+    at Query.run (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/mssql/query.js:107:25)
+    at /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MSSqlQueryInterface.insert (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/dialects/abstract/query-interface.js:308:21)
+    at async model.save (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:2490:35)
+    at async SorteoModel.create (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/model.js:1362:12)
+    at async registrarSorteoRepo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/repositorio/SorteoRepositorio.js:8:16)
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:24:27
+    at async /Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/node_modules/sequelize/lib/sequelize.js:507:18
+    at async registrarSorteo (/Users/LAGUIRRE/Documents/proyectos/api-node/rifaApi/src/services/SorteoService.js:23:42)
+2024-03-16 18:02:37 info - 1710626547815: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.33.0",
+        "accept": "*/*",
+        "postman-token": "f16d0d6e-f3ed-46de-aa69-3e1fdf9d026d",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "165"
+    }
+}
+2024-03-16 18:02:37 info - 1710626547815: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-16 22:46:52 info - 1710643584659: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.33.0",
+        "accept": "*/*",
+        "postman-token": "a30bf34c-df37-4651-ac70-aaffa5acbe6a",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "165"
+    }
+}
+2024-03-16 22:46:52 info - 1710643584659: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de marzo",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-16 22:52:12 info - 1710643914747: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.33.0",
+        "accept": "*/*",
+        "postman-token": "1f05182b-87fa-4ebb-8aea-45ab4331b935",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "166"
+    }
+}
+2024-03-16 22:52:12 info - 1710643914747: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de eneros",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}
+2024-03-16 22:53:32 info - 1710643996410: SorteoControllers > regitrarSorteo > Inicio del servicio regitrarSorteo, {
+    "parameterHeaders": {
+        "content-type": "application/json",
+        "authorization": "Basic YWRtaW46YWRtaW4=",
+        "user-agent": "PostmanRuntime/7.33.0",
+        "accept": "*/*",
+        "postman-token": "1b609e9b-6aac-4c78-bee4-c2b7db9f9a6d",
+        "host": "localhost:4004",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "166"
+    }
+}
+2024-03-16 22:53:32 info - 1710643996410: SorteoService > registrarSorteo > Inicio de la funcion registrarSorteo, parametros: {
+    "titulo": "Sorteo de eneros",
+    "cantidadTicket": 100,
+    "precioUnitario": "20.50",
+    "idMoneda": 1,
+    "descripcion": "Este sorteo es de clientes  que tiene una mascota"
+}

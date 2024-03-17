@@ -1,0 +1,18 @@
+{
+    "development": {
+        "serverConfigurations": {
+            "port": 4004,
+            "url": "http://localhost:4004"
+        },
+        "apiVersions": [
+            "v1"
+        ],
+        "authorizedUsers": {
+            "totvs": "dafce064dd80a9683f83cf10b3e44fe7",
+            "admin": "supersecretSion$123"
+        },
+        "disableMail": true,
+        "activarBasicAuth": true
+    }
+    
+}
