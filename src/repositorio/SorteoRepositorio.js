@@ -4,7 +4,7 @@ const {Op, Sequelize,fn} = require('sequelize');
 const queries = require('./queries');
 const {ESTADO_SOLICITUD}  = require('../lib/constantes');
 
-const registrarSorteoRepo = async ({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion},{transaction=null}) => {
+const registrarSorteoRepo = async ({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, usuario},{transaction=null}) => {
     try {
         return await SorteoModel.create({
             titulo,
@@ -13,8 +13,8 @@ const registrarSorteoRepo = async ({titulo,cantidadTicket, precioUnitario, idMon
             idMoneda, 
             estado:ESTADO_SOLICITUD.ACTIVO,
             descripcion,
-            linkReservas:'localhost:300',
-            usuarioCreacion:'admin',
+            linkReservas:'',
+            usuarioCreacion: usuario,
             fechaCreacion: fn('GETDATE'),
             // fechaModificacion: fn('GETDATE'),
             // usuarioModificacion:'admin',
@@ -59,8 +59,25 @@ const obtenerSorteoById = async({idSorteo}) => {
         throw(error)
     }
 }
+const EliminarSorteoById = async ({idSorteo, usuario},{transaction=null}) => {
+    try {
+        return await SorteoModel.update({
+            estado:ESTADO_SOLICITUD.ELIMINADO,
+            usuarioModificacion:usuario
+        },{
+            where: {
+                idSorteo: idSorteo,
+            },
+            transaction: transaction
+        })
+
+    } catch (error) {
+        throw(error)
+    }
+}
 module.exports = {
     registrarSorteoRepo,
     ActualizarSorteo,
-    obtenerSorteoById
+    obtenerSorteoById,
+    EliminarSorteoById
 }

@@ -3,11 +3,12 @@ const constructorSorteoService = ({logger}) => {
     const {
         registrarSorteoRepo,
         ActualizarSorteo,
-        obtenerSorteoById
+        obtenerSorteoById,
+        EliminarSorteoById
     } = require('../repositorio/SorteoRepositorio');
     const dbAdministrativoFlujoConection = require('../models/dbRifa/dbAdministrativoFlujoConection')
     
-    const registrarSorteo = async({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion}) => {
+    const registrarSorteo = async({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, usuario}) => {
         const nombre = 'registrarSorteo'
         const log = {
             layerMethod: {
@@ -18,14 +19,14 @@ const constructorSorteoService = ({logger}) => {
             messageFin: `Fin de la funcion ${nombre}`,
             messageError: `Error de la funcion ${nombre}`,
             parametrosEntrada: {
-                titulo,cantidadTicket, precioUnitario, idMoneda, descripcion
+                titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, usuario
             }
             
         }
         try {
             logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
             const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
-                const regis = await registrarSorteoRepo({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion},{transaction : t});
+                const regis = await registrarSorteoRepo({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, usuario},{transaction : t});
                 return regis
             });
             return transaccionProcesada;
@@ -70,9 +71,38 @@ const constructorSorteoService = ({logger}) => {
             throw(error);
         }
     }
+    const EliminarSorteoByID = async({idSorteo, usuario}) => {
+        const nombre = 'EliminarSorteoByID'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                idSorteo, usuario
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
+                const objElimi = await EliminarSorteoById({idSorteo, usuario},{transaction : t});
+                logger.writeInfoText(`${log.messageInicio}, respond delete: ${JSON.stringify({objElimi}, null, 4)}`, { ...log.layerMethod });
+                return objElimi;
+            });
+            return transaccionProcesada;
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
     return {
         registrarSorteo,
-        ActualizarEstadoSorteo
+        ActualizarEstadoSorteo,
+        EliminarSorteoByID
     }
 } 
 
