@@ -11,6 +11,11 @@
     userName:   limbertaguirre_SampleDB
     pass:       admin
 
+# ruta imagenes
+http://localhost:4004
+                     /static/
+                           sorteo/2024/03-000004/512012.jpg_juanPeres.jpeg
+http://localhost:4004/static/sorteo/2024/03-000004/512012.jpg_juanPeres.jpeg
  
  #servicio Sorteo
  - registrar Sorteo

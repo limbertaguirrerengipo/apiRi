@@ -1,12 +1,13 @@
 
 const {SorteoModel} = require('../models/dbRifa/SorteoModel');
+const {SorteoImagenesModel} = require('../models/dbRifa/SorteoImagenesModel');
 const {Op, Sequelize,fn} = require('sequelize');
 const queries = require('./queries');
 const {ESTADO_SOLICITUD}  = require('../lib/constantes');
 
 const registrarSorteoRepo = async ({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, usuario},{transaction=null}) => {
     try {
-        return await SorteoModel.create({
+        const objSort = await SorteoModel.create({
             titulo,
             cantidadTicket, 
             precioUnitario, 
@@ -22,6 +23,7 @@ const registrarSorteoRepo = async ({titulo,cantidadTicket, precioUnitario, idMon
              transaction,
              raw: true,
         })
+        return objSort.idSorteo;
     } catch (error) {
         throw(error)
     }
@@ -75,9 +77,19 @@ const EliminarSorteoById = async ({idSorteo, usuario},{transaction=null}) => {
         throw(error)
     }
 }
+const AgregarListaImagenes = async (listaImagenes,{transaction=null}) => {
+    try {
+
+      return await  SorteoImagenesModel.bulkCreate( listaImagenes, { transaction })
+
+    } catch (error) {
+        throw(error)
+    }
+}
 module.exports = {
     registrarSorteoRepo,
     ActualizarSorteo,
     obtenerSorteoById,
-    EliminarSorteoById
+    EliminarSorteoById,
+    AgregarListaImagenes
 }

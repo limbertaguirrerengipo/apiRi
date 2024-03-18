@@ -15,3 +15,6 @@ logs/general/
 # Archivos de Configuracion en src/Config
 /src/config/*.json
 /src/config/database.json
+
+
+/public/sorteo

@@ -11,7 +11,8 @@ const basicAuth = require('express-basic-auth');
 const fs = require('fs')
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.raw({ extended: true, limit: '50mb' }));
 app.use(express.json());
 
 console.log('env: ', env);

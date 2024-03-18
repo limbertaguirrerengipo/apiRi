@@ -42,7 +42,7 @@ exports.SorteoImagenesModel = databaseConnection.define('SorteoImagenesModel', {
       fechaModificacion: {
         type: DataTypes.DATE,
         field:'fechaModificacion',
-        allowNull: false,
+        allowNull: true,
       },
       usuarioCreacion: {
         type: DataTypes.STRING(50),
@@ -52,7 +52,7 @@ exports.SorteoImagenesModel = databaseConnection.define('SorteoImagenesModel', {
       usuarioModificacion: {
         type: DataTypes.STRING(50),
         field:'usuarioModificacion',
-        allowNull: false,
+        allowNull: true,
       },
 }, {
     tableName: 'SorteoImagenes',

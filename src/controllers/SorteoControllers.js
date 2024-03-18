@@ -27,8 +27,8 @@ exports.regitrarSorteo = async(req, res) => {
     }
     try {
         logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(log.parametrosEntrada, null, 4)}`, { ...log.layerMethod });
-        const {titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, usuario } = req.body
-        const reg = await registrarSorteo({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, usuario });
+        const {titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, archivos, usuario } = req.body
+        const reg = await registrarSorteo({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, archivos, usuario });
         res.json({
             status: 0,
             mensaje: 'success',

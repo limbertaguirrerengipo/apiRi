@@ -15,8 +15,11 @@ const ejecutarQuery = async ({query, replacements, BD}) => {
         throw(error);
     }
 }
+const generateUniqueId5Dig = () => {
+    return Math.floor(Math.random() * 90000) + 10000;
+}
+
 module.exports = {
-    TIPOS_USUARIOS,
-    ESTADOS_PROCESO_FLUJO,
-    ejecutarQuery
+    ejecutarQuery,
+    generateUniqueId5Dig
 }
