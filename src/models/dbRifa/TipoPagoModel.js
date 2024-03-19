@@ -14,8 +14,13 @@ exports.TipoPagoModel = databaseConnection.define('TipoPagoModel', {
         allowNull: false,
       },
       descripcion: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(200),
         field:'descripcion',
+        allowNull: false,
+      },
+      urlImagen: {
+        type: DataTypes.STRING(300),
+        field:'urlImagen',
         allowNull: false,
       },
       estado: {

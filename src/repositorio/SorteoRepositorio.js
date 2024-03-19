@@ -157,6 +157,28 @@ const obtenerListSorteoImagenesById = async({idSorteo, urlServer},{transaction=n
         throw(error)
     }
 }
+const obtenerListaTipoPagoDisponibles = async({urlServerImage},{transaction=null}) => {
+    try {
+        const urlServidorString = `'${urlServerImage}'` + '+t.urlImagen' 
+        const sql = `
+            select 
+                t.idTipoPago,
+                t.nombre,
+                t.descripcion,
+                ${urlServidorString} as urlImagen
+                from TipoPago t 
+                where estado = 'true' `;
+                    const jsonConfiguration = {
+                        type: 'SELECT',
+                        replacements: {
+                    }
+                    };
+                 const lista = await  dbAdministrativoFlujoConection.query(sql, jsonConfiguration);
+                 return lista;
+    } catch (error) {
+        throw(error)
+    }
+}
 
 module.exports = {
     registrarSorteoRepo,
@@ -165,5 +187,6 @@ module.exports = {
     EliminarSorteoById,
     AgregarListaImagenes,
     obtenerlistaSorteoByFecha,
-    obtenerListSorteoImagenesById
+    obtenerListSorteoImagenesById,
+    obtenerListaTipoPagoDisponibles
 }

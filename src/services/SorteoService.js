@@ -13,7 +13,8 @@ const constructorSorteoService = ({logger}) => {
         EliminarSorteoById,
         AgregarListaImagenes,
         obtenerlistaSorteoByFecha,
-        obtenerListSorteoImagenesById
+        obtenerListSorteoImagenesById,
+        obtenerListaTipoPagoDisponibles
     } = require('../repositorio/SorteoRepositorio');
     const dbAdministrativoFlujoConection = require('../models/dbRifa/dbAdministrativoFlujoConection')
     const {GuardarFotoFisico} =require('../utils/guardarArchivo');
@@ -216,7 +217,8 @@ const constructorSorteoService = ({logger}) => {
                 if(obj && obj.estado === ESTADO_SOLICITUD.INACTIVO) throw new Error('El Ticket de sorteo ya no se encuentra disponible');
                 const urlServer = config.serverConfigurations.url + '/static/';
                 const lista = await obtenerListSorteoImagenesById({idSorteo, urlServer},{transaction : t}); 
-                obj ={ ...obj, imagenes: lista}
+                const listTipoPagos = await obtenerListaTipoPagoDisponibles({urlServerImage: urlServer }, {transaction : t})
+                obj ={ ...obj, listImagenes: lista, listTipoPagos}
                 return obj
             });
             return transaccionProcesada;

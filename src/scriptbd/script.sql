@@ -1,7 +1,7 @@
 
--- CREATE DATABASE bdRifas
+-- CREATE DATABASE bdRifa
 go
-use bdRifas
+use bdRifa
 
 create table Sorteo(
   idSorteo int primary key identity,
@@ -36,6 +36,7 @@ create table TipoPago(
   idTipoPago int primary key not null,
   nombre varchar(50) not null,
   descripcion varchar(200),
+  urlImagen varchar(300),
   estado bit
 )
 go
@@ -59,7 +60,7 @@ create table TicketSorteo(
   idSorteo int not null,
   idClienteTemporal int not null,
   monto decimal(12,2) not null,
-  idTipoPago int not null,
+  idTipoPago int not null,   -- 1 QR, 2 credito/debito, 3 Efectivo
   idEstadoPago int not null, --1 aplicado, 2 pendiente, 3 cancelado
   fecha datetime,
   fechaCreacion dateTime default GetDate(),
@@ -68,3 +69,6 @@ create table TicketSorteo(
   usuarioModificacion  varchar(50)
 )
 go
+INSERT into TipoPago (idTipoPago, nombre, descripcion, urlImagen, estado) VALUES(1, 'PAGO QR','pago con transferencia','pagos/qr.png',1)
+INSERT into TipoPago (idTipoPago, nombre, descripcion, urlImagen, estado) VALUES(2, 'CREDITO/DEBITO','Pago bancario','pagos/debito.png',1)
+INSERT into TipoPago (idTipoPago, nombre, descripcion, urlImagen, estado) VALUES(3, 'EFECTIVO','pago con transferencia','pagos/efectivo.png',1)

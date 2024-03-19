@@ -25,7 +25,7 @@ http://localhost:4004/static/sorteo/2024/03-000004/512012.jpg_juanPeres.jpeg
  - listado de sorteo por fecha  ok
   
  --cliente link
-   --obtener sorteo ID  verificar informacion.
+   --obtener sorteo ID  verificar informacion. ok
    -registrar ticket + Cliente
 
    -listar detalle ticket por ID sorteo  
