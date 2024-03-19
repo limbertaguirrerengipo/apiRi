@@ -23,11 +23,24 @@ const jsonValidacionActualizarSorteo = {
  const jsonValidacionEliminarSorteo = {
     idSorteo: yup.number().integer().positive().required(),
     usuario: yup.string().required(),
-};
+ };
 const schemaEliminarSorteo = yup.object(jsonValidacionEliminarSorteo);
+const jsonValidacionListadoSorteoByFecha = {
+    fechaInicio: yup.date().required(),
+    fechaFin: yup.date().required()
+};
+const schemaListadoSorteoByFecha = yup.object(jsonValidacionListadoSorteoByFecha);
+
+//desencriptar parametro ventra encriptado string
+const jsonValidacionDetalleSorteoId = {
+    idSorteo: yup.number().integer().positive().required(),
+};
+const schemaDetalleSorteoID = yup.object(jsonValidacionDetalleSorteoId);
  module.exports = {
     schemaValidarLogin,
     schemaValidarRegistroSorteo,
     schemaValidarActualizarSorteo,
-    schemaEliminarSorteo
+    schemaEliminarSorteo,
+    schemaListadoSorteoByFecha,
+    schemaDetalleSorteoID
  }

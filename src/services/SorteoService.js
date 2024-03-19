@@ -2,13 +2,18 @@ const constructorSorteoService = ({logger}) => {
     const fileName = `${__filename.substring(__dirname.length + 1, __filename.lastIndexOf('.'))}`;
     const moment = require('moment');
     const { fn } = require('sequelize');
+    const {ESTADO_SOLICITUD}  = require('../lib/constantes');
     const {generateUniqueId5Dig} = require('./../utils/Utilidades');
+    const env = process.env.NODE_ENV || 'development';
+    const config = require('../config/app.json')[env];
     const {
         registrarSorteoRepo,
         ActualizarSorteo,
         obtenerSorteoById,
         EliminarSorteoById,
-        AgregarListaImagenes
+        AgregarListaImagenes,
+        obtenerlistaSorteoByFecha,
+        obtenerListSorteoImagenesById
     } = require('../repositorio/SorteoRepositorio');
     const dbAdministrativoFlujoConection = require('../models/dbRifa/dbAdministrativoFlujoConection')
     const {GuardarFotoFisico} =require('../utils/guardarArchivo');
@@ -160,11 +165,74 @@ const constructorSorteoService = ({logger}) => {
         const mascara = codigoGenerado({codigoStringRegex, numeroValorEntero});
         return moment().format('MM')+'-' + mascara + numeroValorEntero;
     }
+    const obtenerListadaSorteoByFecha = async({fechaInicio, fechaFin}) => {
+        const nombre = 'obtenerListadaSorteoByFecha'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                fechaInicio, fechaFin
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
+            const listado = await obtenerlistaSorteoByFecha({fechaInicio, fechaFin}, {transaction : t});
+            return listado
+            });
+            return transaccionProcesada;
+       
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
+    const obtenerDetalleSorteoById = async({idSorteo}) => {
+        const nombre = 'obtenerDetalleSorteoById'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                idSorteo
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
 
+                let obj = await obtenerSorteoById({idSorteo}, {transaction : t});
+                if(obj === null) throw new Error('No existe el Ticket de sorteo.');
+                if(obj && obj.estado === ESTADO_SOLICITUD.INACTIVO) throw new Error('El Ticket de sorteo ya no se encuentra disponible');
+                const urlServer = config.serverConfigurations.url + '/static/';
+                const lista = await obtenerListSorteoImagenesById({idSorteo, urlServer},{transaction : t}); 
+                obj ={ ...obj, imagenes: lista}
+                return obj
+            });
+            return transaccionProcesada;
+       
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
     return {
         registrarSorteo,
         ActualizarEstadoSorteo,
-        EliminarSorteoByID
+        EliminarSorteoByID,
+        obtenerListadaSorteoByFecha,
+        obtenerDetalleSorteoById
     }
 } 
 

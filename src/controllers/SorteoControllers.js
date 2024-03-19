@@ -6,7 +6,9 @@ const {constructorSorteoService} = require('../services/SorteoService');
 const {
     registrarSorteo,
     ActualizarEstadoSorteo,
-    EliminarSorteoByID
+    EliminarSorteoByID,
+    obtenerListadaSorteoByFecha,
+    obtenerDetalleSorteoById
 } = constructorSorteoService({logger});
 
 exports.regitrarSorteo = async(req, res) => {
@@ -112,6 +114,81 @@ exports.EliminarSorteo = async(req, res) => {
             data: {
                 respo
             }
+        })
+    } catch (error) {
+        logger.writeErrorText(`${log.messageError}`, { ...log.layerMethod });
+        logger.writeExceptionLog(error, { ...log.layerMethod });
+        res.json({
+            status: 1,
+            mensaje: (error.message) ? (error.message) : error,
+            data: null
+        })
+    }
+}
+exports.obtenerListaSorteoByFecha = async(req, res) => {
+    const nameService = 'obtenerListaSorteoByFecha'
+    const log = {
+        layerMethod: {
+            layer: fileName,
+            method: nameService
+        },
+        messageInicio: `Inicio del servicio ${nameService}`,
+        messageFin: `Fin del servicio ${nameService}`,
+        messageError: `Error del servicio ${nameService}`,
+        parametrosEntrada: {
+            parameterHeaders: {
+                ...req.headers
+            }
+        }
+    }
+    try {
+        const {fechaInicio, fechaFin } = req.body
+        const fecha1 = fechaInicio.replace(/-/g, '');
+        const fecha2 = fechaFin.replace(/-/g, '');
+        logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
+        const listado = await obtenerListadaSorteoByFecha({fechaInicio: fecha1, fechaFin:fecha2 });
+        res.json({
+            status: 0,
+            mensaje: 'success',
+            data: listado
+        })
+    } catch (error) {
+        logger.writeErrorText(`${log.messageError}`, { ...log.layerMethod });
+        logger.writeExceptionLog(error, { ...log.layerMethod });
+        res.json({
+            status: 1,
+            mensaje: (error.message) ? (error.message) : error,
+            data: null
+        })
+    }
+}
+
+exports.obtenerDetalleSorteo = async(req, res) => {
+    const nameService = 'obtenerDetalleSorteo'
+    const log = {
+        layerMethod: {
+            layer: fileName,
+            method: nameService
+        },
+        messageInicio: `Inicio del servicio ${nameService}`,
+        messageFin: `Fin del servicio ${nameService}`,
+        messageError: `Error del servicio ${nameService}`,
+        parametrosEntrada: {
+            parameterHeaders: {
+                ...req.headers
+            }
+        }
+    }
+    try {
+        const {idSorteo } = req.body
+        //desencriptar idSorteo, implementarr
+        let sorteoId = idSorteo;
+        logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
+        const sorteo = await obtenerDetalleSorteoById({ idSorteo: sorteoId });
+        res.json({
+            status: 0,
+            mensaje: 'success',
+            data: sorteo
         })
     } catch (error) {
         logger.writeErrorText(`${log.messageError}`, { ...log.layerMethod });

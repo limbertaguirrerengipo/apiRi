@@ -17,12 +17,21 @@ http://localhost:4004
                            sorteo/2024/03-000004/512012.jpg_juanPeres.jpeg
 http://localhost:4004/static/sorteo/2024/03-000004/512012.jpg_juanPeres.jpeg
  
- #servicio Sorteo
- - registrar Sorteo
- - actualizar Sorteo
- - Eliminar Sorteo
+ -----------------------------------------------------------------
+ #servicio Sorteo-------------------------------------------------
+ - registrar Sorteo  ok
+ - actualizar Sorteo ok
+ - Eliminar Sorteo   ok
+ - listado de sorteo por fecha  ok
   
+ --cliente link
+   --obtener sorteo ID  verificar informacion.
+   -registrar ticket + Cliente
 
+   -listar detalle ticket por ID sorteo  
+   - aplicar pago manual
+-------------------------------------------------------------------
+-------------------------------------------------------------------
 
 # cliente SOMME.COM 30mb
 workstation id=bdRifas.mssql.somee.com;

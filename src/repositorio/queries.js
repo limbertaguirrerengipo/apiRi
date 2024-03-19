@@ -4,9 +4,24 @@ const queryObtenerFuncionarios = ({idEmpleados}) => {
             left join bd_pedidobkp.dbo.Empresa_alias as empresa1 on IdEmpresa = empresa1.id
     where idempleado in (${idEmpleados})`;
 }
+const queryObtenerSorteosPorfecha =({estadoActivo, estadoInactivo, fechaInicio, fechaFin})=>{
+    return `SELECT 
+    s.idSorteo, 
+    s.titulo,
+    s.cantidadTicket,
+    s.precioUnitario,
+    s.fechaSorteo,
+    s.idMoneda,
+    s.descripcion,
+    s.estado
+    from bdRifa.dbo.sorteo s
+    where 
+    s.estado IN (${estadoActivo}, ${estadoInactivo}) AND 
+    s.fechaCreacion BETWEEN ${fechaInicio} AND  ${fechaFin} `;
+
+}
 
 module.exports = {
     queryObtenerFuncionarios,
-    queryIdAreaPorIdProcesoIdArea: `select idArea from EstadoProcesoDetalle where IdProceso =:idProceso and IdEstadoProceso =:idEstadoProceso`
-
+    queryObtenerSorteosPorfecha
 }
