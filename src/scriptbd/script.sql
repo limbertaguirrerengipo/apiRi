@@ -61,8 +61,8 @@ create table TicketSorteo(
   idClienteTemporal int not null,
   monto decimal(12,2) not null,
   idTipoPago int not null,   -- 1 QR, 2 credito/debito, 3 Efectivo
-  idEstadoPago int not null, --1 aplicado, 2 pendiente, 3 cancelado
-  fecha datetime,
+  idEstadoPago int not null, --1 aplicado, 2 pendiente, 3 Eliminado
+  fecha datetime null,
   fechaCreacion dateTime default GetDate(),
   fechaModificacion dateTime,
   usuarioCreacion  varchar(50) not null,

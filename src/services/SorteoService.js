@@ -2,7 +2,11 @@ const constructorSorteoService = ({logger}) => {
     const fileName = `${__filename.substring(__dirname.length + 1, __filename.lastIndexOf('.'))}`;
     const moment = require('moment');
     const { fn } = require('sequelize');
-    const {ESTADO_SOLICITUD}  = require('../lib/constantes');
+    const {
+        ESTADO_SOLICITUD,
+        ESTADO_PAGO,
+        TIPO_PAGO
+    }  = require('../lib/constantes');
     const {generateUniqueId5Dig} = require('./../utils/Utilidades');
     const env = process.env.NODE_ENV || 'development';
     const config = require('../config/app.json')[env];
@@ -14,8 +18,12 @@ const constructorSorteoService = ({logger}) => {
         AgregarListaImagenes,
         obtenerlistaSorteoByFecha,
         obtenerListSorteoImagenesById,
-        obtenerListaTipoPagoDisponibles
+        obtenerListaTipoPagoDisponibles,
+        agregarListTicketsSorteoMasivo
     } = require('../repositorio/SorteoRepositorio');
+    const {
+        registrarCliente
+    } = require('../repositorio/ClienteRepositorio');
     const dbAdministrativoFlujoConection = require('../models/dbRifa/dbAdministrativoFlujoConection')
     const {GuardarFotoFisico} =require('../utils/guardarArchivo');
     
@@ -229,12 +237,70 @@ const constructorSorteoService = ({logger}) => {
             throw(error);
         }
     }
+    const registrarTickets = async({idSorteo, carnetIdentidad, cantidadTicket, monto, montoTotal, nombreCompleto, codePais, nroCelular, correo, idTipoPago }) => {
+        const nombre = 'registrarTickets'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                idSorteo
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
+                let obj = await obtenerSorteoById({idSorteo}, {transaction : t});
+                if(obj === null) throw new Error('No existe el Ticket de sorteo.');
+                if(obj && obj.estado === ESTADO_SOLICITUD.INACTIVO) throw new Error('El Ticket de sorteo ya no se encuentra disponible');
+                //verificar la cantidad ticket disponibles... 
+                //pagar POR TIPO PAGO
+
+                const idClienteTemporal = await registrarCliente({ carnetIdentidad, nombreCompleto, codePais, nroCelular, correo, montoTotal, idTipoPago },{transaction: t });
+
+                const listTicketsGenerados = generarListTickets({idSorteo, cantidadTicket, idClienteTemporal, monto, idTipoPago, idEstadoPago:ESTADO_PAGO.PENDIENTE }); //parametro quemado
+                const lista = await agregarListTicketsSorteoMasivo(listTicketsGenerados,{transaction:t});
+
+                return obj
+
+            });
+            return transaccionProcesada;
+       
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
+
+    const  generarListTickets = ({idSorteo, cantidadTicket, idClienteTemporal, monto, idTipoPago, idEstadoPago}) => {
+         const numero = cantidadTicket;
+        const arrayNumeros = Array.from({ length: numero });
+        const lista = arrayNumeros.map((_, indice) => {
+            return { idSorteo,
+                idClienteTemporal,
+                monto,
+                idTipoPago,
+                idEstadoPago: idTipoPago === TIPO_PAGO.EFECTIVO? ESTADO_PAGO.PENDIENTE: idEstadoPago,
+                fecha:fn('GETDATE'), // idTipoPago === TIPO_PAGO.EFECTIVO? null : fn('GETDATE'),
+                fechaCreacion:fn('GETDATE'),
+                usuarioCreacion:'SYSTEM'
+            };
+        });
+        return lista;
+    }
+
     return {
         registrarSorteo,
         ActualizarEstadoSorteo,
         EliminarSorteoByID,
         obtenerListadaSorteoByFecha,
-        obtenerDetalleSorteoById
+        obtenerDetalleSorteoById,
+        registrarTickets
     }
 } 
 

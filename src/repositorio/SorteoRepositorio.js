@@ -1,6 +1,7 @@
 const dbAdministrativoFlujoConection = require('../models/dbRifa/dbAdministrativoFlujoConection');
 const {SorteoModel} = require('../models/dbRifa/SorteoModel');
 const {SorteoImagenesModel} = require('../models/dbRifa/SorteoImagenesModel');
+const {TicketSorteoModel} = require('../models/dbRifa/TicketSorteoModel');
 const {Op, Sequelize,fn} = require('sequelize');
 const queries = require('./queries');
 const {ESTADO_SOLICITUD}  = require('../lib/constantes');
@@ -118,7 +119,7 @@ const obtenerlistaSorteoByFecha = async({fechaInicio, fechaFin},{transaction=nul
                         cantidadReservados=0,
                         s.estado,
                         CONVERT(varchar(10), s.fechaCreacion, 105) + ' ' + CONVERT(varchar(8), s.fechaCreacion, 108) AS fechaRegistro
-                        from bdRifa.dbo.sorteo s
+                        from Sorteo s
                         where 
                         s.estado IN ( :estadoActivo, :estadoInactvo ) AND 
                         s.fechaCreacion BETWEEN :fechaInicio AND  :fechaFin`;
@@ -179,6 +180,29 @@ const obtenerListaTipoPagoDisponibles = async({urlServerImage},{transaction=null
         throw(error)
     }
 }
+const agregarListTicketsSorteoMasivo = async (listTicketsSorteo,{transaction=null}) => {
+    try {
+
+      const list = await  TicketSorteoModel.bulkCreate(listTicketsSorteo, { transaction })
+      return list;
+
+    } catch (error) {
+        throw(error)
+    }
+}
+const registrarTicketSorteo = async ( objTicketSorteo ,{transaction=null}) => {
+    try {
+        const obj = await TicketSorteoModel.create(
+            objTicketSorteo
+            ,{
+             transaction,
+             raw: true,
+        })
+        return obj.idTicketSorteo;
+    } catch (error) {
+        throw(error)
+    }
+}
 
 module.exports = {
     registrarSorteoRepo,
@@ -188,5 +212,6 @@ module.exports = {
     AgregarListaImagenes,
     obtenerlistaSorteoByFecha,
     obtenerListSorteoImagenesById,
-    obtenerListaTipoPagoDisponibles
+    obtenerListaTipoPagoDisponibles,
+    agregarListTicketsSorteoMasivo
 }

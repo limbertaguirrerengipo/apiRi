@@ -8,7 +8,8 @@ const {
     ActualizarEstadoSorteo,
     EliminarSorteoByID,
     obtenerListadaSorteoByFecha,
-    obtenerDetalleSorteoById
+    obtenerDetalleSorteoById,
+    registrarTickets
 } = constructorSorteoService({logger});
 
 exports.regitrarSorteo = async(req, res) => {
@@ -185,6 +186,42 @@ exports.obtenerDetalleSorteo = async(req, res) => {
         let sorteoId = idSorteo;
         logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
         const sorteo = await obtenerDetalleSorteoById({ idSorteo: sorteoId });
+        res.json({
+            status: 0,
+            mensaje: 'success',
+            data: sorteo
+        })
+    } catch (error) {
+        logger.writeErrorText(`${log.messageError}`, { ...log.layerMethod });
+        logger.writeExceptionLog(error, { ...log.layerMethod });
+        res.json({
+            status: 1,
+            mensaje: (error.message) ? (error.message) : error,
+            data: null
+        })
+    }
+}
+exports.registrarTicket = async(req, res) => {
+    const nameService = 'registrarTicket'
+    const log = {
+        layerMethod: {
+            layer: fileName,
+            method: nameService
+        },
+        messageInicio: `Inicio del servicio ${nameService}`,
+        messageFin: `Fin del servicio ${nameService}`,
+        messageError: `Error del servicio ${nameService}`,
+        parametrosEntrada: {
+            parameterHeaders: {
+                ...req.headers
+            }
+        }
+    }
+    try {
+        const {idSorteo, carnetIdentidad, cantidadTicket, monto, montoTotal, nombreCompleto, codePais, nroCelular, correo, idTipoPago } = req.body
+  
+        logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
+        const sorteo = await registrarTickets({ idSorteo, carnetIdentidad, cantidadTicket, monto, montoTotal, nombreCompleto, codePais, nroCelular, correo, idTipoPago});
         res.json({
             status: 0,
             mensaje: 'success',

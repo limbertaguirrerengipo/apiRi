@@ -5,6 +5,7 @@ exports.TicketSorteoModel = databaseConnection.define('TicketSorteoModel', {
     idTicketSorteo: {
         type: DataTypes.BIGINT,
         field:'idTicketSorteo',
+        autoIncrement: true,
         primaryKey: true,
         allowNull: false,
     },
@@ -39,7 +40,7 @@ exports.TicketSorteoModel = databaseConnection.define('TicketSorteoModel', {
     },
     fecha: {
         type: DataTypes.DATE,
-        field:'nomfechabre',
+        field:'fecha',
         allowNull: true,
     },
     fechaCreacion: {

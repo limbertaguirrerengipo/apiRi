@@ -36,11 +36,29 @@ const jsonValidacionDetalleSorteoId = {
     idSorteo: yup.number().integer().positive().required(),
 };
 const schemaDetalleSorteoID = yup.object(jsonValidacionDetalleSorteoId);
+
+const jsonValidacionTicketSorteo = {
+    idSorteo: yup.number().integer().positive().required(),
+    carnetIdentidad: yup.string().required(),
+    cantidadTicket: yup.number().integer().positive().required(),
+    monto: yup.number().positive().required(),
+    montoTotal: yup.number().positive().required(),
+    nombreCompleto: yup.string().required(),
+    codePais: yup.string().required(),
+    nroCelular: yup.number().integer().positive().required(),
+    correo: yup.string(),
+    idTipoPago:yup.number().integer().positive().required(),
+
+ };
+
+ const schemaTicketSorteo = yup.object(jsonValidacionTicketSorteo);
+
  module.exports = {
     schemaValidarLogin,
     schemaValidarRegistroSorteo,
     schemaValidarActualizarSorteo,
     schemaEliminarSorteo,
     schemaListadoSorteoByFecha,
-    schemaDetalleSorteoID
+    schemaDetalleSorteoID,
+    schemaTicketSorteo
  }
