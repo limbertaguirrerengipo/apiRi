@@ -206,6 +206,23 @@ const obtenerCantidadSorteosRegistrados = async({idSorteo}) => {
         throw(error)
     }
 }
+const obtenerDetalleTicketByIdStatus = async({idSorteo},{transaction=null}) => {
+    try {
+
+        const sql = queries.queryObtenerTicketsBySorteo({idSorteo}); 
+                    const jsonConfiguration = {
+                        type: 'SELECT',
+                        replacements: {
+       
+                    }
+                    };
+                 const lista = await  dbAdministrativoFlujoConection.query(sql, jsonConfiguration);
+                 return lista;
+
+    } catch (error) {
+        throw(error)
+    }
+}
 
 
 module.exports = {
@@ -218,5 +235,6 @@ module.exports = {
     obtenerListSorteoImagenesById,
     obtenerListaTipoPagoDisponibles,
     agregarListTicketsSorteoMasivo,
-    obtenerCantidadSorteosRegistrados
+    obtenerCantidadSorteosRegistrados,
+    obtenerDetalleTicketByIdStatus
 }

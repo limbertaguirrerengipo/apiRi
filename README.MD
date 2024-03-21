@@ -26,9 +26,9 @@ http://localhost:4004/static/sorteo/2024/03-000004/512012.jpg_juanPeres.jpeg
   
  --cliente link
    --obtener sorteo ID  verificar informacion. ok
-   -registrar ticket + Cliente
+   -registrar ticket + Cliente ok.. 90%
 
-   -listar detalle ticket por ID sorteo  
+   -listar detalle ticket por ID sorteo   ok 95%
    - aplicar pago manual
 -------------------------------------------------------------------
 -------------------------------------------------------------------

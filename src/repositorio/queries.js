@@ -1,9 +1,4 @@
-const queryObtenerFuncionarios = ({idEmpleados}) => {
-    return `select codfuncionario, nombreEmpleado as nombre, empresa1.nombre as empresa, nombreArea, nombreCargo, ci, idempleado, idarea, idcargo
-    from bd_pedidobkp.dbo.Funcionarios
-            left join bd_pedidobkp.dbo.Empresa_alias as empresa1 on IdEmpresa = empresa1.id
-    where idempleado in (${idEmpleados})`;
-}
+
 const queryObtenerSorteosPorfecha =({estadoActivo, estadoInactivo, fechaInicio, fechaFin})=>{
     return `SELECT 
     s.idSorteo, 
@@ -20,8 +15,27 @@ const queryObtenerSorteosPorfecha =({estadoActivo, estadoInactivo, fechaInicio, 
     s.fechaCreacion BETWEEN ${fechaInicio} AND  ${fechaFin} `;
 
 }
+const queryObtenerTicketsBySorteo =({idSorteo})=>{
+    return `SELECT
+    TS.idTicketSorteo,
+    TS.idSorteo,
+    Cl.idClienteTemporal,
+    Cl.nombreCompleto,
+    Cl.carnetIdentidad,
+    Cl.codePais,
+    Cl.nroCelular,
+    Cl.correo,
+    TS.monto,
+    S.idMoneda,
+    TS.idTipoPago,
+    TS.idEstadoPago
+   FROM TicketSorteo TS 
+  INNER JOIN ClienteTemporal Cl on CL.idClienteTemporal = TS.idClienteTemporal
+  INNER JOIN Sorteo S on S.idSorteo = TS.idSorteo
+   where TS.idEstadoPago in (1,2) and TS.idSorteo = ${idSorteo} `;
+}
 
 module.exports = {
-    queryObtenerFuncionarios,
-    queryObtenerSorteosPorfecha
+    queryObtenerSorteosPorfecha,
+    queryObtenerTicketsBySorteo
 }

@@ -11,7 +11,9 @@
             "admin": "admin"
         },
         "disableMail": true,
-        "activarBasicAuth": true
+        "activarBasicAuth": true,
+        "sorte":{
+            "longitudTicketsCeros":10
+        }
     }
-    
 }

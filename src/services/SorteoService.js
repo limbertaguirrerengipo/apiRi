@@ -20,7 +20,8 @@ const constructorSorteoService = ({logger}) => {
         obtenerListSorteoImagenesById,
         obtenerListaTipoPagoDisponibles,
         agregarListTicketsSorteoMasivo,
-        obtenerCantidadSorteosRegistrados
+        obtenerCantidadSorteosRegistrados,
+        obtenerDetalleTicketByIdStatus
     } = require('../repositorio/SorteoRepositorio');
     const {
         registrarCliente
@@ -258,19 +259,25 @@ const constructorSorteoService = ({logger}) => {
                 let obj = await obtenerSorteoById({idSorteo}, {transaction : t});
                 if(obj === null) throw new Error('No existe el Ticket de sorteo.');
                 if(obj && obj.estado === ESTADO_SOLICITUD.INACTIVO) throw new Error('El Ticket de sorteo ya no se encuentra disponible');
-                //verificar la cantidad ticket disponibles... 
                 //pagar POR TIPO PAGO
                 let cantidadLimiteTicket = parseInt(obj.cantidadTicket);
                  let PrecioUni = obj.precioUnitario;
                  let TotalCalculado = parseFloat(obj.precioUnitario) * parseFloat(cantidadTicket);
-                 //validar
+                 ////verificar la cantidad ticket disponibles... 
                  await validarCantidadTicketDisponibles({idSorteo, cantidadLimiteTicket, nuevaCantidadTickets: cantidadTicket })
 
                 const idClienteTemporal = await registrarCliente({ carnetIdentidad, nombreCompleto, codePais, nroCelular, correo, montoTotal:TotalCalculado, idTipoPago },{transaction: t });
                 const listTicketsGenerados = generarListTickets({idSorteo, cantidadTicket, idClienteTemporal, monto: PrecioUni, idTipoPago, idEstadoPago:ESTADO_PAGO.PENDIENTE }); 
                 const lista = await agregarListTicketsSorteoMasivo(listTicketsGenerados,{transaction:t});
+                let codigoTick = lista.map(x => {
+                    return { idTicket: String(parseInt(x.idTicketSorteo)).padStart(config.sorteo.longitudTicketsCeros, '0') };
+                });
+                //enviar mail o wpp
 
-                return obj
+                return {
+                    idSorteo: idSorteo,
+                    tickets: codigoTick
+                };
 
             });
             return transaccionProcesada;
@@ -315,13 +322,48 @@ const constructorSorteoService = ({logger}) => {
         }
     }
 
+    const obtenerTicketsByIdSorteo = async({idSorteo, idEstadoPago}) => {
+        const nombre = 'obtenerTicketsByIdSorteo'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                idSorteo, idEstadoPago
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
+
+                let obj = await obtenerSorteoById({idSorteo}, {transaction : t});
+                if(obj === null) throw new Error('No existe el Ticket de sorteo.');
+                if(obj && obj.estado === ESTADO_SOLICITUD.INACTIVO) throw new Error('El Ticket de sorteo ya no se encuentra disponible');
+                const lista= await obtenerDetalleTicketByIdStatus({idSorteo}, {transaction : t});
+                return lista
+            });
+            return transaccionProcesada;
+       
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
+
+
     return {
         registrarSorteo,
         ActualizarEstadoSorteo,
         EliminarSorteoByID,
         obtenerListadaSorteoByFecha,
         obtenerDetalleSorteoById,
-        registrarTickets
+        registrarTickets,
+        obtenerTicketsByIdSorteo
     }
 } 
 

@@ -51,6 +51,12 @@ const jsonValidacionTicketSorteo = {
 
  const schemaTicketSorteo = yup.object(jsonValidacionTicketSorteo);
 
+ const jsonValidacionDetalleTickets = {
+    idSorteo: yup.number().integer().positive().required(),
+    idEstadoPago:yup.number().integer().required()
+ };
+ const schemaDetalleTickets = yup.object(jsonValidacionDetalleTickets);
+
  module.exports = {
     schemaValidarLogin,
     schemaValidarRegistroSorteo,
@@ -58,5 +64,6 @@ const jsonValidacionTicketSorteo = {
     schemaEliminarSorteo,
     schemaListadoSorteoByFecha,
     schemaDetalleSorteoID,
-    schemaTicketSorteo
+    schemaTicketSorteo,
+    schemaDetalleTickets
  }

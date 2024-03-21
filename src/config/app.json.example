@@ -8,11 +8,12 @@
             "v1"
         ],
         "authorizedUsers": {
-            "totvs": "dafce064dd80a9683f83cf10b3e44fe7",
             "admin": "supersecretSion$123"
         },
         "disableMail": true,
-        "activarBasicAuth": true
+        "activarBasicAuth": true,
+                "sorte":{
+            "longitudTicketsCeros":10
+        }
     }
-    
 }
