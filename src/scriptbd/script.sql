@@ -72,3 +72,14 @@ go
 INSERT into TipoPago (idTipoPago, nombre, descripcion, urlImagen, estado) VALUES(1, 'PAGO QR','pago con transferencia','pagos/qr.png',1)
 INSERT into TipoPago (idTipoPago, nombre, descripcion, urlImagen, estado) VALUES(2, 'CREDITO/DEBITO','Pago bancario','pagos/debito.png',1)
 INSERT into TipoPago (idTipoPago, nombre, descripcion, urlImagen, estado) VALUES(3, 'EFECTIVO','pago con transferencia','pagos/efectivo.png',1)
+GO
+create table EstadoPago(
+  idEstadoPago int primary key not null,
+  nombre varchar(50) not null,
+  descripcion varchar(200),
+)
+GO
+INSERT into EstadoPago(idEstadoPago, nombre, descripcion) VALUES(1, 'APLICADO','ES CUANDO SE APLICA EL PAGO POR UN TIPO DE PAGO');
+INSERT into EstadoPago(idEstadoPago, nombre, descripcion) VALUES(2, 'PENDIENTE','ESPECIFICA QUE AUN NO SE APLICO EL PAGO');
+INSERT into EstadoPago(idEstadoPago, nombre, descripcion) VALUES(3, 'ELIMINADO','EL ESTADO DEL TICKET SE ENCUENTRA ELIMINADO');
+

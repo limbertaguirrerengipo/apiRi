@@ -41,8 +41,6 @@ const jsonValidacionTicketSorteo = {
     idSorteo: yup.number().integer().positive().required(),
     carnetIdentidad: yup.string().required(),
     cantidadTicket: yup.number().integer().positive().required(),
-    monto: yup.number().positive().required(),
-    montoTotal: yup.number().positive().required(),
     nombreCompleto: yup.string().required(),
     codePais: yup.string().required(),
     nroCelular: yup.number().integer().positive().required(),

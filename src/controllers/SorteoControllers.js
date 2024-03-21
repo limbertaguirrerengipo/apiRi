@@ -218,10 +218,10 @@ exports.registrarTicket = async(req, res) => {
         }
     }
     try {
-        const {idSorteo, carnetIdentidad, cantidadTicket, monto, montoTotal, nombreCompleto, codePais, nroCelular, correo, idTipoPago } = req.body
+        const {idSorteo, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago } = req.body
   
         logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
-        const sorteo = await registrarTickets({ idSorteo, carnetIdentidad, cantidadTicket, monto, montoTotal, nombreCompleto, codePais, nroCelular, correo, idTipoPago});
+        const sorteo = await registrarTickets({ idSorteo, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago});
         res.json({
             status: 0,
             mensaje: 'success',

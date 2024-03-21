@@ -4,7 +4,7 @@ const {SorteoImagenesModel} = require('../models/dbRifa/SorteoImagenesModel');
 const {TicketSorteoModel} = require('../models/dbRifa/TicketSorteoModel');
 const {Op, Sequelize,fn} = require('sequelize');
 const queries = require('./queries');
-const {ESTADO_SOLICITUD}  = require('../lib/constantes');
+const {ESTADO_SOLICITUD, ESTADO_PAGO}  = require('../lib/constantes');
 
 const ejecutarQuery = async ({query, replacements, transaction = null}) => {
     try {
@@ -190,19 +190,23 @@ const agregarListTicketsSorteoMasivo = async (listTicketsSorteo,{transaction=nul
         throw(error)
     }
 }
-const registrarTicketSorteo = async ( objTicketSorteo ,{transaction=null}) => {
+
+const obtenerCantidadSorteosRegistrados = async({idSorteo}) => {
     try {
-        const obj = await TicketSorteoModel.create(
-            objTicketSorteo
-            ,{
-             transaction,
-             raw: true,
-        })
-        return obj.idTicketSorteo;
+        return await TicketSorteoModel.findAll({
+            where: {
+                idSorteo:idSorteo,
+                idEstadoPago: {
+                    [Op.in]: [ESTADO_PAGO.APLICADO, ESTADO_PAGO.PENDIENTE] 
+                }
+            },
+            raw: true
+        });
     } catch (error) {
         throw(error)
     }
 }
+
 
 module.exports = {
     registrarSorteoRepo,
@@ -213,5 +217,6 @@ module.exports = {
     obtenerlistaSorteoByFecha,
     obtenerListSorteoImagenesById,
     obtenerListaTipoPagoDisponibles,
-    agregarListTicketsSorteoMasivo
+    agregarListTicketsSorteoMasivo,
+    obtenerCantidadSorteosRegistrados
 }

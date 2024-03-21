@@ -19,7 +19,8 @@ const constructorSorteoService = ({logger}) => {
         obtenerlistaSorteoByFecha,
         obtenerListSorteoImagenesById,
         obtenerListaTipoPagoDisponibles,
-        agregarListTicketsSorteoMasivo
+        agregarListTicketsSorteoMasivo,
+        obtenerCantidadSorteosRegistrados
     } = require('../repositorio/SorteoRepositorio');
     const {
         registrarCliente
@@ -237,7 +238,7 @@ const constructorSorteoService = ({logger}) => {
             throw(error);
         }
     }
-    const registrarTickets = async({idSorteo, carnetIdentidad, cantidadTicket, monto, montoTotal, nombreCompleto, codePais, nroCelular, correo, idTipoPago }) => {
+    const registrarTickets = async({idSorteo, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago }) => {
         const nombre = 'registrarTickets'
         const log = {
             layerMethod: {
@@ -259,10 +260,14 @@ const constructorSorteoService = ({logger}) => {
                 if(obj && obj.estado === ESTADO_SOLICITUD.INACTIVO) throw new Error('El Ticket de sorteo ya no se encuentra disponible');
                 //verificar la cantidad ticket disponibles... 
                 //pagar POR TIPO PAGO
+                let cantidadLimiteTicket = parseInt(obj.cantidadTicket);
+                 let PrecioUni = obj.precioUnitario;
+                 let TotalCalculado = parseFloat(obj.precioUnitario) * parseFloat(cantidadTicket);
+                 //validar
+                 await validarCantidadTicketDisponibles({idSorteo, cantidadLimiteTicket, nuevaCantidadTickets: cantidadTicket })
 
-                const idClienteTemporal = await registrarCliente({ carnetIdentidad, nombreCompleto, codePais, nroCelular, correo, montoTotal, idTipoPago },{transaction: t });
-
-                const listTicketsGenerados = generarListTickets({idSorteo, cantidadTicket, idClienteTemporal, monto, idTipoPago, idEstadoPago:ESTADO_PAGO.PENDIENTE }); //parametro quemado
+                const idClienteTemporal = await registrarCliente({ carnetIdentidad, nombreCompleto, codePais, nroCelular, correo, montoTotal:TotalCalculado, idTipoPago },{transaction: t });
+                const listTicketsGenerados = generarListTickets({idSorteo, cantidadTicket, idClienteTemporal, monto: PrecioUni, idTipoPago, idEstadoPago:ESTADO_PAGO.PENDIENTE }); 
                 const lista = await agregarListTicketsSorteoMasivo(listTicketsGenerados,{transaction:t});
 
                 return obj
@@ -292,6 +297,22 @@ const constructorSorteoService = ({logger}) => {
             };
         });
         return lista;
+    }
+    const validarCantidadTicketDisponibles = async ({idSorteo, cantidadLimiteTicket, nuevaCantidadTickets }) => {
+        try{
+           const listTicket = await obtenerCantidadSorteosRegistrados({idSorteo});
+            let nroList = nuevaCantidadTickets + listTicket.length 
+           if( nroList <= cantidadLimiteTicket){
+              //todo okey
+               let n=0;
+           }else{
+             let disponible = cantidadLimiteTicket - listTicket.length;
+              throw new Error(`Solo hay ${disponible} tickets Disponibles, ustede `);
+           }
+
+        } catch (error) {
+            throw(error);
+        }
     }
 
     return {
