@@ -30,6 +30,8 @@ http://localhost:4004/static/sorteo/2024/03-000004/512012.jpg_juanPeres.jpeg
 
    -listar detalle ticket por ID sorteo   ok 95%
    - aplicar pago manual
+    
+   pendiente  semafoto en el tickets
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 

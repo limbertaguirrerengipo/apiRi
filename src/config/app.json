@@ -12,7 +12,7 @@
         },
         "disableMail": true,
         "activarBasicAuth": true,
-        "sorte":{
+        "sorteo":{
             "longitudTicketsCeros":10
         }
     }
