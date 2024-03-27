@@ -46,3 +46,27 @@ initial catalog= bdRifas ;
 TrustServerCertificate=True
 
 on1eikg1fp
+
+--------------------------------
+
+
+const jwt = require('jsonwebtoken');
+
+// Token a verificar
+const token = 'tu_token_jwt';
+
+// Clave secreta utilizada para firmar el token
+const secretKey = 'tu_clave_secreta';
+
+// Verificar el token
+jwt.verify(token, secretKey, (err, decoded) => {
+  if (err) {
+    // El token no es válido o ha expirado
+    console.error('El token no es válido o ha expirado');
+  } else {
+    // El token es válido y no ha expirado
+    console.log('El token es válido y no ha expirado');
+    console.log('Datos del usuario:', decoded);
+  }
+});
+

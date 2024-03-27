@@ -2,6 +2,7 @@ const constructorSorteoService = ({logger}) => {
     const fileName = `${__filename.substring(__dirname.length + 1, __filename.lastIndexOf('.'))}`;
     const moment = require('moment');
     const { fn } = require('sequelize');
+    const { encrypt } = require('../midlwares/encrypt')
     const {
         ESTADO_SOLICITUD,
         ESTADO_PAGO,
@@ -194,7 +195,8 @@ const constructorSorteoService = ({logger}) => {
             logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
             const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
             const listado = await obtenerlistaSorteoByFecha({fechaInicio, fechaFin}, {transaction : t});
-            return listado
+            const newData = listado.map(item => ({ ...item, cadena: encrypt(item.idSorteo.toString()) }));
+            return newData
             });
             return transaccionProcesada;
        
