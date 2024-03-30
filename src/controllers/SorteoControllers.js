@@ -10,7 +10,8 @@ const {
     obtenerListadaSorteoByFecha,
     obtenerDetalleSorteoById,
     registrarTickets,
-    obtenerTicketsByIdSorteo
+    obtenerTicketsByIdSorteo,
+    desEncriptarIdSorteo
 } = constructorSorteoService({logger});
 
 exports.regitrarSorteo = async(req, res) => {
@@ -183,8 +184,7 @@ exports.obtenerDetalleSorteo = async(req, res) => {
     }
     try {
         const {idSorteo } = req.body
-        //desencriptar idSorteo, implementarr
-        let sorteoId = idSorteo;
+        let sorteoId = await desEncriptarIdSorteo({idSorteo});
         logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
         const sorteo = await obtenerDetalleSorteoById({ idSorteo: sorteoId });
         res.json({

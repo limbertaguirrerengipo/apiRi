@@ -31,9 +31,8 @@ const jsonValidacionListadoSorteoByFecha = {
 };
 const schemaListadoSorteoByFecha = yup.object(jsonValidacionListadoSorteoByFecha);
 
-//desencriptar parametro ventra encriptado string
 const jsonValidacionDetalleSorteoId = {
-    idSorteo: yup.number().integer().positive().required(),
+    idSorteo: yup.string().required()
 };
 const schemaDetalleSorteoID = yup.object(jsonValidacionDetalleSorteoId);
 

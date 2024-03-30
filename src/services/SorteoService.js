@@ -2,7 +2,7 @@ const constructorSorteoService = ({logger}) => {
     const fileName = `${__filename.substring(__dirname.length + 1, __filename.lastIndexOf('.'))}`;
     const moment = require('moment');
     const { fn } = require('sequelize');
-    const { encrypt } = require('../midlwares/encrypt')
+    const { encrypt, decrypt } = require('../midlwares/encrypt')
     const {
         ESTADO_SOLICITUD,
         ESTADO_PAGO,
@@ -357,6 +357,35 @@ const constructorSorteoService = ({logger}) => {
         }
     }
 
+    const desEncriptarIdSorteo = async({idSorteo}) => {
+        const nombre = 'desEncriptarIdSorteo'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                idSorteo
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            
+             const idDes = parseInt(decrypt(idSorteo));
+             if (isNaN(idDes)) {
+                throw new Error('Codigo invalido');
+             }
+             return idDes;
+       
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
 
     return {
         registrarSorteo,
@@ -365,7 +394,8 @@ const constructorSorteoService = ({logger}) => {
         obtenerListadaSorteoByFecha,
         obtenerDetalleSorteoById,
         registrarTickets,
-        obtenerTicketsByIdSorteo
+        obtenerTicketsByIdSorteo,
+        desEncriptarIdSorteo
     }
 } 
 
