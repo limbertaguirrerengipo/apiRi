@@ -30,4 +30,5 @@ router.post('/crear/ticket-cliente', validateBody(schemaTicketSorteo), registrar
 
 router.post('/lista/detalle-tickets', validateBody(schemaDetalleTickets), obtenerDetalleTicketsById);
 
+
 module.exports = router;

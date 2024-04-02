@@ -1,10 +1,11 @@
 const dbAdministrativoFlujoConection = require('../models/dbRifa/dbAdministrativoFlujoConection');
 const {SorteoModel} = require('../models/dbRifa/SorteoModel');
+const { TipoPagoModel } = require('../models/dbRifa/TipoPagoModel');
 const {SorteoImagenesModel} = require('../models/dbRifa/SorteoImagenesModel');
 const {TicketSorteoModel} = require('../models/dbRifa/TicketSorteoModel');
 const {Op, Sequelize,fn} = require('sequelize');
 const queries = require('./queries');
-const {ESTADO_SOLICITUD, ESTADO_PAGO}  = require('../lib/constantes');
+const {ESTADO_SOLICITUD, ESTADO_PAGO, ESTADO_TIPO_PAGO}  = require('../lib/constantes');
 
 const ejecutarQuery = async ({query, replacements, transaction = null}) => {
     try {
@@ -116,7 +117,7 @@ const obtenerlistaSorteoByFecha = async({fechaInicio, fechaFin},{transaction=nul
                         s.fechaSorteo,
                         s.idMoneda,
                         s.descripcion,
-                        cantidadReservados=0,
+                        (SELECT COUNT(*)  FROM TicketSorteo tk where tk.idSorteo= s.idSorteo and tk.idEstadoPago in(${ESTADO_SOLICITUD.ACTIVO}, ${ESTADO_SOLICITUD.INACTIVO})) as cantidadReservados,
                         s.estado,
                         CONVERT(varchar(10), s.fechaCreacion, 105) + ' ' + CONVERT(varchar(8), s.fechaCreacion, 108) AS fechaRegistro
                         from Sorteo s

@@ -17,9 +17,14 @@ const TIPO_PAGO = {
     CREDITODEBITO:2,
     EFECTIVO:3
 }
+const ESTADO_TIPO_PAGO ={
+    TRUE: 1,
+    FALSE: 0
+}
 module.exports = {
     ESTADO_SOLICITUD,
     MONEDA,
     ESTADO_PAGO,
-    TIPO_PAGO
+    TIPO_PAGO,
+    ESTADO_TIPO_PAGO
 };
