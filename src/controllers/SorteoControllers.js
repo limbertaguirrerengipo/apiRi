@@ -1,6 +1,9 @@
 const fileName = `${__filename.substring(__dirname.length + 1, __filename.lastIndexOf('.'))}`;
 const Logger = require('../logger');
 let logger = new Logger.Logger();
+const Semaphore = require('semaphore');
+const semaforo = Semaphore(1);
+
 
 const {constructorSorteoService} = require('../services/SorteoService');
 const {
@@ -203,40 +206,45 @@ exports.obtenerDetalleSorteo = async(req, res) => {
     }
 }
 exports.registrarTicket = async(req, res) => {
-    const nameService = 'registrarTicket'
-    const log = {
-        layerMethod: {
-            layer: fileName,
-            method: nameService
-        },
-        messageInicio: `Inicio del servicio ${nameService}`,
-        messageFin: `Fin del servicio ${nameService}`,
-        messageError: `Error del servicio ${nameService}`,
-        parametrosEntrada: {
-            parameterHeaders: {
-                ...req.headers
+    semaforo.take(async function() {
+
+        const nameService = 'registrarTicket'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nameService
+            },
+            messageInicio: `Inicio del servicio ${nameService}`,
+            messageFin: `Fin del servicio ${nameService}`,
+            messageError: `Error del servicio ${nameService}`,
+            parametrosEntrada: {
+                parameterHeaders: {
+                    ...req.headers
+                }
             }
         }
-    }
-    try {
-        const {idSorteo, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago } = req.body
-        let idSorteoDesEncrip = await desEncriptarIdSorteo({idSorteo});
-        logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
-        const sorteo = await registrarTickets({ idSorteo: idSorteoDesEncrip, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago});
-        res.json({
-            status: 0,
-            mensaje: 'success',
-            data: sorteo
-        })
-    } catch (error) {
-        logger.writeErrorText(`${log.messageError}`, { ...log.layerMethod });
-        logger.writeExceptionLog(error, { ...log.layerMethod });
-        res.json({
-            status: 1,
-            mensaje: (error.message) ? (error.message) : error,
-            data: null
-        })
-    }
+        try {
+            const {idSorteo, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago } = req.body
+            let idSorteoDesEncrip = await desEncriptarIdSorteo({idSorteo});
+            logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
+            const sorteo = await registrarTickets({ idSorteo: idSorteoDesEncrip, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago});
+            semaforo.leave();
+            res.json({
+                status: 0,
+                mensaje: 'success',
+                data: sorteo
+            })
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            semaforo.leave();
+            res.json({
+                status: 1,
+                mensaje: (error.message) ? (error.message) : error,
+                data: null
+            })
+        }
+    });
 }
 exports.obtenerDetalleTicketsById = async(req, res) => {
     const nameService = 'obtenerDetalleTicketsById'

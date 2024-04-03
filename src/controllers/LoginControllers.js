@@ -26,14 +26,15 @@ const fileName = `${__filename.substring(__dirname.length + 1, __filename.lastIn
         console.log('retorna')
         logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(log.parametrosEntrada, null, 4)}`, { ...log.layerMethod });
         const {usuario, password} = req.headers
-        const user = {
+        if (usuario !== 'admin' || password !=='admin164'){ 
+           throw new Error('login incorrecto')
+        }
+         const user = {
             id: 123,
-            username: 'ejemploUsuario'
+            carnet: '00000011',
+            username: 'admin'
           };
-          
-      
           const expiresIn = '1h'; // Tiempo de expiración del token (1 hora en este ejemplo)
-          
           // Generar el token
           const token = jwt.sign(user, envVars.JWT_SECRET, { expiresIn });
 
@@ -41,8 +42,8 @@ const fileName = `${__filename.substring(__dirname.length + 1, __filename.lastIn
             status: 0,
             mensaje: 'success',
             data: {
-                userName: "Maria99",
-                carnet: '5361144',
+                userName: user.username,
+                carnet: user.carnet,
                 token: token
             }
         })
