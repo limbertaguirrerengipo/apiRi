@@ -220,9 +220,9 @@ exports.registrarTicket = async(req, res) => {
     }
     try {
         const {idSorteo, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago } = req.body
-  
+        let idSorteoDesEncrip = await desEncriptarIdSorteo({idSorteo});
         logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
-        const sorteo = await registrarTickets({ idSorteo, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago});
+        const sorteo = await registrarTickets({ idSorteo: idSorteoDesEncrip, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago});
         res.json({
             status: 0,
             mensaje: 'success',

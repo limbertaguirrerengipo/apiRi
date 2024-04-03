@@ -37,7 +37,7 @@ const jsonValidacionDetalleSorteoId = {
 const schemaDetalleSorteoID = yup.object(jsonValidacionDetalleSorteoId);
 
 const jsonValidacionTicketSorteo = {
-    idSorteo: yup.number().integer().positive().required(),
+    idSorteo:yup.string().required(),
     carnetIdentidad: yup.string().required(),
     cantidadTicket: yup.number().integer().positive().required(),
     nombreCompleto: yup.string().required(),
@@ -45,7 +45,6 @@ const jsonValidacionTicketSorteo = {
     nroCelular: yup.number().integer().positive().required(),
     correo: yup.string(),
     idTipoPago:yup.number().integer().positive().required(),
-
  };
 
  const schemaTicketSorteo = yup.object(jsonValidacionTicketSorteo);
