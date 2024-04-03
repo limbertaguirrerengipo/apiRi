@@ -14,6 +14,11 @@
         "activarBasicAuth": true,
                 "sorteo":{
             "longitudTicketsCeros":10
+        },
+        "wpp":{
+            "url":"https://api.ultramsg.com/instance82715/messages/chat",
+            "token":"dpbhdlou2z3qbo68",
+            "instanceID":"instance82715"
         }
     }
 }

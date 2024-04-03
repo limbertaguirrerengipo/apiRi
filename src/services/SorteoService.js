@@ -11,6 +11,12 @@ const constructorSorteoService = ({logger}) => {
     const {generateUniqueId5Dig} = require('./../utils/Utilidades');
     const env = process.env.NODE_ENV || 'development';
     const config = require('../config/app.json')[env];
+    
+    const {
+        enviarMensaje
+    } = require('./MensajeService');
+
+
     const {
         registrarSorteoRepo,
         ActualizarSorteo,
@@ -275,7 +281,14 @@ const constructorSorteoService = ({logger}) => {
                     return { idTicket: String(parseInt(x.idTicketSorteo)).padStart(config.sorteo.longitudTicketsCeros, '0') };
                 });
                 //enviar mail o wpp
-
+                enviarMensaje({
+                    tickets: codigoTick,
+                    extension:codePais,
+                    nroCelular:nroCelular,
+                    titulo:'Rifa Grupo Napoles',
+                    descripcion:'Gracias por participar... Mucha suerte!!!'
+                })
+                
                 return {
                     idSorteo: idSorteo,
                     tickets: codigoTick
