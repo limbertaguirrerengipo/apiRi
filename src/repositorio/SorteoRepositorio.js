@@ -224,6 +224,39 @@ const obtenerDetalleTicketByIdStatus = async({idSorteo},{transaction=null}) => {
         throw(error)
     }
 }
+const obtenerDetalleClienteXSorteoId = async({idSorteo},{transaction=null}) => {
+    try {
+
+        const sql = `SELECT 
+                            DISTINCT c.idClienteTemporal,
+                            c.nombreCompleto,
+                            c.carnetIdentidad,
+                            c.codePais,
+                            c.nroCelular as celular,
+                            s.idMoneda,
+                            c.montoTotal as total,
+                            s.idSorteo,
+                            c.idTipoPago,
+                            c.fechaCreacion,
+                            (SELECT nombre FROM bdRifa.dbo.TipoPago where idTipoPago =c.idTipoPago) as tipoPago,
+                            (select COUNT(*) from TicketSorteo f where f.idEstadoPago in (${ESTADO_PAGO.APLICADO}, ${ESTADO_PAGO.PENDIENTE}) and f.idClienteTemporal= c.idClienteTemporal and f.idSorteo= s.idSorteo ) as cantidad
+                        FROM TicketSorteo dt 
+                        INNER join Sorteo s on s.idSorteo = dt.idSorteo
+                        INNER JOIN ClienteTemporal c on c.idClienteTemporal=dt.idClienteTemporal
+                        WHERE s.idSorteo =${idSorteo}`;
+                    const jsonConfiguration = {
+                        type: 'SELECT',
+                        replacements: {
+                    }
+                    };
+                 const lista = await  dbAdministrativoFlujoConection.query(sql, jsonConfiguration);
+                 return lista;
+
+    } catch (error) {
+        throw(error)
+    }
+}
+
 
 
 module.exports = {
@@ -237,5 +270,6 @@ module.exports = {
     obtenerListaTipoPagoDisponibles,
     agregarListTicketsSorteoMasivo,
     obtenerCantidadSorteosRegistrados,
-    obtenerDetalleTicketByIdStatus
+    obtenerDetalleTicketByIdStatus,
+    obtenerDetalleClienteXSorteoId
 }

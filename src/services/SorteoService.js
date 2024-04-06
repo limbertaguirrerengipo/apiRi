@@ -28,7 +28,8 @@ const constructorSorteoService = ({logger}) => {
         obtenerListaTipoPagoDisponibles,
         agregarListTicketsSorteoMasivo,
         obtenerCantidadSorteosRegistrados,
-        obtenerDetalleTicketByIdStatus
+        obtenerDetalleTicketByIdStatus,
+        obtenerDetalleClienteXSorteoId
     } = require('../repositorio/SorteoRepositorio');
     const {
         registrarCliente
@@ -400,6 +401,35 @@ const constructorSorteoService = ({logger}) => {
         }
     }
 
+    const obtenerDetalleClienteXSorteo = async({idSorteo}) => {
+        const nombre = 'obtenerDetalleClienteXSorteo'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                idSorteo
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
+            const listado = await obtenerDetalleClienteXSorteoId({idSorteo}, {transaction : t});
+            return listado
+            });
+            return transaccionProcesada;
+       
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
+
     return {
         registrarSorteo,
         ActualizarEstadoSorteo,
@@ -408,7 +438,8 @@ const constructorSorteoService = ({logger}) => {
         obtenerDetalleSorteoById,
         registrarTickets,
         obtenerTicketsByIdSorteo,
-        desEncriptarIdSorteo
+        desEncriptarIdSorteo,
+        obtenerDetalleClienteXSorteo
     }
 } 
 

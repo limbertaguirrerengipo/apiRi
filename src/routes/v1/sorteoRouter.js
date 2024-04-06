@@ -8,7 +8,8 @@ const {
     schemaListadoSorteoByFecha,
     schemaDetalleSorteoID,
     schemaTicketSorteo,
-    schemaDetalleTickets
+    schemaDetalleTickets,
+    schemaDetalleClienteSorteo
 } = require('../../utils/validationsYup')
 const {
     regitrarSorteo,
@@ -17,7 +18,8 @@ const {
     obtenerListaSorteoByFecha,
     obtenerDetalleSorteo,
     registrarTicket,
-    obtenerDetalleTicketsById
+    obtenerDetalleTicketsById,
+    listaDetalleClienteXSorteo
 } = require('../../controllers/SorteoControllers')
 
 router.post('/registrar-sorteo',validateBody(schemaValidarRegistroSorteo), regitrarSorteo);
@@ -30,5 +32,7 @@ router.post('/crear/ticket-cliente', validateBody(schemaTicketSorteo), registrar
 
 router.post('/lista/detalle-tickets', validateBody(schemaDetalleTickets), obtenerDetalleTicketsById);
 
+//detalles
+router.post('/lista/sorteo/detalle-cliente', validateBody(schemaDetalleClienteSorteo), listaDetalleClienteXSorteo);
 
 module.exports = router;
