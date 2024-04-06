@@ -257,6 +257,32 @@ const obtenerDetalleClienteXSorteoId = async({idSorteo},{transaction=null}) => {
     }
 }
 
+const obtenerDetalleSorteoClienteId = async({idSorteo, idClienteTemporal},{transaction=null}) => {
+    try {
+
+        const sql = `SELECT 
+        tk.idTicketSorteo,
+        tk.idSorteo,
+        tk.idClienteTemporal,
+        tk.monto,
+        s.idMoneda,
+        tk.idEstadoPago
+        FROM bdRifa.dbo.TicketSorteo tk
+        INNER JOIN bdRifa.dbo.Sorteo s on s.idSorteo= tk.idSorteo
+        where tk.idEstadoPago in (${ESTADO_PAGO.APLICADO}, ${ESTADO_PAGO.PENDIENTE}) and 
+        tk.idSorteo=${idSorteo}  and tk.idClienteTemporal=${idClienteTemporal}`;
+                    const jsonConfiguration = {
+                        type: 'SELECT',
+                        replacements: {
+                    }
+                    };
+                 const lista = await  dbAdministrativoFlujoConection.query(sql, jsonConfiguration);
+                 return lista;
+
+    } catch (error) {
+        throw(error)
+    }
+}
 
 
 module.exports = {
@@ -271,5 +297,6 @@ module.exports = {
     agregarListTicketsSorteoMasivo,
     obtenerCantidadSorteosRegistrados,
     obtenerDetalleTicketByIdStatus,
-    obtenerDetalleClienteXSorteoId
+    obtenerDetalleClienteXSorteoId,
+    obtenerDetalleSorteoClienteId
 }

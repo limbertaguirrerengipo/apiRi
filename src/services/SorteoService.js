@@ -29,7 +29,8 @@ const constructorSorteoService = ({logger}) => {
         agregarListTicketsSorteoMasivo,
         obtenerCantidadSorteosRegistrados,
         obtenerDetalleTicketByIdStatus,
-        obtenerDetalleClienteXSorteoId
+        obtenerDetalleClienteXSorteoId,
+        obtenerDetalleSorteoClienteId
     } = require('../repositorio/SorteoRepositorio');
     const {
         registrarCliente
@@ -429,6 +430,34 @@ const constructorSorteoService = ({logger}) => {
             throw(error);
         }
     }
+    const obtenerDetalleSorteoClienteID = async({idSorteo, idClienteTemporal}) => {
+        const nombre = 'obtenerDetalleSorteoClienteID'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                idSorteo, idClienteTemporal
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
+            const listado = await obtenerDetalleSorteoClienteId({idSorteo, idClienteTemporal}, {transaction : t});
+            return listado
+            });
+            return transaccionProcesada;
+       
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
 
     return {
         registrarSorteo,
@@ -439,7 +468,8 @@ const constructorSorteoService = ({logger}) => {
         registrarTickets,
         obtenerTicketsByIdSorteo,
         desEncriptarIdSorteo,
-        obtenerDetalleClienteXSorteo
+        obtenerDetalleClienteXSorteo,
+        obtenerDetalleSorteoClienteID
     }
 } 
 

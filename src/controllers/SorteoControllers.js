@@ -15,7 +15,8 @@ const {
     registrarTickets,
     obtenerTicketsByIdSorteo,
     desEncriptarIdSorteo,
-    obtenerDetalleClienteXSorteo
+    obtenerDetalleClienteXSorteo,
+    obtenerDetalleSorteoClienteID
 } = constructorSorteoService({logger});
 
 exports.regitrarSorteo = async(req, res) => {
@@ -305,6 +306,43 @@ exports.listaDetalleClienteXSorteo = async(req, res) => {
 
         logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
         const listado = await obtenerDetalleClienteXSorteo({idSorteo });
+        res.json({
+            status: 0,
+            mensaje: 'success',
+            data: listado
+        })
+    } catch (error) {
+        logger.writeErrorText(`${log.messageError}`, { ...log.layerMethod });
+        logger.writeExceptionLog(error, { ...log.layerMethod });
+        res.json({
+            status: 1,
+            mensaje: (error.message) ? (error.message) : error,
+            data: null
+        })
+    }
+}
+
+exports.listaDetalleSorteoCienteId = async(req, res) => {
+    const nameService = 'listaDetalleSorteoCienteId'
+    const log = {
+        layerMethod: {
+            layer: fileName,
+            method: nameService
+        },
+        messageInicio: `Inicio del servicio ${nameService}`,
+        messageFin: `Fin del servicio ${nameService}`,
+        messageError: `Error del servicio ${nameService}`,
+        parametrosEntrada: {
+            parameterHeaders: {
+                ...req.headers
+            }
+        }
+    }
+    try {
+        const {idSorteo, idClienteTemporal } = req.body
+
+        logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
+        const listado = await obtenerDetalleSorteoClienteID({idSorteo, idClienteTemporal });
         res.json({
             status: 0,
             mensaje: 'success',
