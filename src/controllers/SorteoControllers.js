@@ -3,7 +3,7 @@ const Logger = require('../logger');
 let logger = new Logger.Logger();
 const Semaphore = require('semaphore');
 const semaforo = Semaphore(1);
-
+const moment = require('moment');
 
 const {constructorSorteoService} = require('../services/SorteoService');
 const {
@@ -153,8 +153,11 @@ exports.obtenerListaSorteoByFecha = async(req, res) => {
     }
     try {
         const {fechaInicio, fechaFin } = req.body
+        const fechaMoment = moment(fechaFin);
+        const fechaNueva = fechaMoment.add(1, 'days').format('YYYY-MM-DD'); 
+
         const fecha1 = fechaInicio.replace(/-/g, '');
-        const fecha2 = fechaFin.replace(/-/g, '');
+        const fecha2 = fechaNueva.replace(/-/g, '');
         logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
         const listado = await obtenerListadaSorteoByFecha({fechaInicio: fecha1, fechaFin:fecha2 });
         res.json({
