@@ -16,7 +16,9 @@ const {
     obtenerTicketsByIdSorteo,
     desEncriptarIdSorteo,
     obtenerDetalleClienteXSorteo,
-    obtenerDetalleSorteoClienteID
+    obtenerDetalleSorteoClienteID,
+    updateAPlicarEstadoDetalleCliente,
+    eliminarTicketClienteIds
 } = constructorSorteoService({logger});
 
 exports.regitrarSorteo = async(req, res) => {
@@ -347,6 +349,80 @@ exports.listaDetalleSorteoCienteId = async(req, res) => {
             status: 0,
             mensaje: 'success',
             data: listado
+        })
+    } catch (error) {
+        logger.writeErrorText(`${log.messageError}`, { ...log.layerMethod });
+        logger.writeExceptionLog(error, { ...log.layerMethod });
+        res.json({
+            status: 1,
+            mensaje: (error.message) ? (error.message) : error,
+            data: null
+        })
+    }
+}
+
+exports.updateAplicarTicketCliente = async(req, res) => {
+    const nameService = 'updateAplicarTicketCliente'
+    const log = {
+        layerMethod: {
+            layer: fileName,
+            method: nameService
+        },
+        messageInicio: `Inicio del servicio ${nameService}`,
+        messageFin: `Fin del servicio ${nameService}`,
+        messageError: `Error del servicio ${nameService}`,
+        parametrosEntrada: {
+            parameterHeaders: {
+                ...req.headers
+            }
+        }
+    }
+    try {
+        const {listaIds, usuario} = req.body
+
+        logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
+        const listado = await updateAPlicarEstadoDetalleCliente({listaIds, usuario});
+        res.json({
+            status: 0,
+            mensaje: 'success',
+            data: listado
+        })
+    } catch (error) {
+        logger.writeErrorText(`${log.messageError}`, { ...log.layerMethod });
+        logger.writeExceptionLog(error, { ...log.layerMethod });
+        res.json({
+            status: 1,
+            mensaje: (error.message) ? (error.message) : error,
+            data: null
+        })
+    }
+}
+
+exports.eliminarTicketCliente = async(req, res) => {
+    const nameService = 'eliminarTicketCliente'
+    const log = {
+        layerMethod: {
+            layer: fileName,
+            method: nameService
+        },
+        messageInicio: `Inicio del servicio ${nameService}`,
+        messageFin: `Fin del servicio ${nameService}`,
+        messageError: `Error del servicio ${nameService}`,
+        parametrosEntrada: {
+            parameterHeaders: {
+                ...req.headers
+            }
+        }
+    }
+    try {
+        const {idTicketSorteo, idClienteTemporal, usuario } = req.body
+
+        logger.writeInfoText(`${log.messageInicio}, ${JSON.stringify(req.body, null, 4)}`, { ...log.layerMethod });
+        const obj = await eliminarTicketClienteIds({ idTicketSorteo, idClienteTemporal, usuario });
+        res.json({
+            status: 0,
+            mensaje: 'success',
+            data: obj
         })
     } catch (error) {
         logger.writeErrorText(`${log.messageError}`, { ...log.layerMethod });

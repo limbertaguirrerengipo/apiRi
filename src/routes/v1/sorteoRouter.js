@@ -10,7 +10,8 @@ const {
     schemaTicketSorteo,
     schemaDetalleTickets,
     schemaDetalleClienteSorteo,
-    schemaDetalleCliente
+    schemaDetalleCliente,
+    schemaEliminarCliente
 } = require('../../utils/validationsYup')
 const {
     regitrarSorteo,
@@ -21,7 +22,9 @@ const {
     registrarTicket,
     obtenerDetalleTicketsById,
     listaDetalleClienteXSorteo,
-    listaDetalleSorteoCienteId
+    listaDetalleSorteoCienteId,
+    updateAplicarTicketCliente,
+    eliminarTicketCliente
 } = require('../../controllers/SorteoControllers')
 
 router.post('/registrar-sorteo',validateBody(schemaValidarRegistroSorteo), regitrarSorteo);
@@ -38,5 +41,8 @@ router.post('/lista/detalle-tickets', validateBody(schemaDetalleTickets), obtene
 router.post('/lista/sorteo/detalle-clientes', validateBody(schemaDetalleClienteSorteo), listaDetalleClienteXSorteo);
 router.post('/lista/detalle/cliente', validateBody(schemaDetalleCliente), listaDetalleSorteoCienteId);
 
+router.post('/aplicar/pagos/update-estado', updateAplicarTicketCliente);
+
+router.post('/eliminar/tickets/cliente', validateBody(schemaEliminarCliente), eliminarTicketCliente);
 
 module.exports = router;

@@ -237,9 +237,10 @@ const obtenerDetalleClienteXSorteoId = async({idSorteo},{transaction=null}) => {
                             c.montoTotal as total,
                             s.idSorteo,
                             c.idTipoPago,
-                            c.fechaCreacion,
+                            CONVERT(varchar(10), c.fechaCreacion, 105) + ' ' + CONVERT(varchar(8), c.fechaCreacion, 108) AS fechaRegistro,
                             (SELECT nombre FROM bdRifa.dbo.TipoPago where idTipoPago =c.idTipoPago) as tipoPago,
-                            (select COUNT(*) from TicketSorteo f where f.idEstadoPago in (${ESTADO_PAGO.APLICADO}, ${ESTADO_PAGO.PENDIENTE}) and f.idClienteTemporal= c.idClienteTemporal and f.idSorteo= s.idSorteo ) as cantidad
+                            (select COUNT(*) from TicketSorteo f where f.idEstadoPago in (${ESTADO_PAGO.APLICADO}, ${ESTADO_PAGO.PENDIENTE}) and f.idClienteTemporal= c.idClienteTemporal and f.idSorteo= s.idSorteo ) as cantidad,
+                            (select COUNT(*) from TicketSorteo f where f.idEstadoPago in (${ESTADO_PAGO.APLICADO}) and f.idClienteTemporal= c.idClienteTemporal and f.idSorteo= s.idSorteo ) as cantidadPagados
                         FROM TicketSorteo dt 
                         INNER join Sorteo s on s.idSorteo = dt.idSorteo
                         INNER JOIN ClienteTemporal c on c.idClienteTemporal=dt.idClienteTemporal
@@ -261,7 +262,7 @@ const obtenerDetalleSorteoClienteId = async({idSorteo, idClienteTemporal},{trans
     try {
 
         const sql = `SELECT 
-        tk.idTicketSorteo,
+        CAST(tk.idTicketSorteo AS INT) as idTicketSorteo,
         tk.idSorteo,
         tk.idClienteTemporal,
         tk.monto,
@@ -283,6 +284,41 @@ const obtenerDetalleSorteoClienteId = async({idSorteo, idClienteTemporal},{trans
         throw(error)
     }
 }
+const TicketSorteoClienteXIds = async ({idTicketSorteo,idClienteTemporal,idEstadoPago}, usuario, {transaction=null}) => {
+    try {
+        return await TicketSorteoModel.update({
+            idEstadoPago: idEstadoPago,
+            usuarioModificacion: usuario
+        },{
+            where: {
+                idClienteTemporal: idClienteTemporal,
+                idTicketSorteo:idTicketSorteo
+            },
+            transaction: transaction
+        })
+
+    } catch (error) {
+        throw(error)
+    }
+}
+const eliminarTicketClienteIDS = async ({idTicketSorteo,idClienteTemporal}, usuario, {transaction=null}) => {
+    try {
+        return await TicketSorteoModel.update({
+            idEstadoPago: ESTADO_PAGO.ELIMINADO,
+            usuarioModificacion: usuario,
+            fechaModificacion: fn('GETDATE')
+        },{
+            where: {
+                idClienteTemporal: idClienteTemporal,
+                idTicketSorteo:idTicketSorteo
+            },
+            transaction: transaction
+        })
+
+    } catch (error) {
+        throw(error)
+    }
+}
 
 
 module.exports = {
@@ -298,5 +334,7 @@ module.exports = {
     obtenerCantidadSorteosRegistrados,
     obtenerDetalleTicketByIdStatus,
     obtenerDetalleClienteXSorteoId,
-    obtenerDetalleSorteoClienteId
+    obtenerDetalleSorteoClienteId,
+    TicketSorteoClienteXIds,
+    eliminarTicketClienteIDS
 }

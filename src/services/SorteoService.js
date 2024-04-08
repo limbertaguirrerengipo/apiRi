@@ -30,7 +30,9 @@ const constructorSorteoService = ({logger}) => {
         obtenerCantidadSorteosRegistrados,
         obtenerDetalleTicketByIdStatus,
         obtenerDetalleClienteXSorteoId,
-        obtenerDetalleSorteoClienteId
+        obtenerDetalleSorteoClienteId,
+        TicketSorteoClienteXIds,
+        eliminarTicketClienteIDS
     } = require('../repositorio/SorteoRepositorio');
     const {
         registrarCliente
@@ -448,7 +450,72 @@ const constructorSorteoService = ({logger}) => {
             logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
             const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
             const listado = await obtenerDetalleSorteoClienteId({idSorteo, idClienteTemporal}, {transaction : t});
-            return listado
+            let codigoTick = listado.map(x => {
+                return { ...x, idTicket: String(parseInt(x.idTicketSorteo)).padStart(config.sorteo.longitudTicketsCeros, '0') };
+            });
+
+            return codigoTick
+            });
+            return transaccionProcesada;
+       
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
+    const updateAPlicarEstadoDetalleCliente = async({listaIds, usuario}) => {
+        const nombre = 'updateAPlicarEstadoDetalleCliente'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                listaIds,
+                usuario
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
+            
+            // return listado
+            for(let item of listaIds){
+                const update = await TicketSorteoClienteXIds(item, usuario, {transaction : t});
+            }
+            });
+            return transaccionProcesada;
+       
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
+
+    const eliminarTicketClienteIds = async({idTicketSorteo, idClienteTemporal, usuario}) => {
+        const nombre = 'eliminarTicketClienteIds'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                idTicketSorteo, idClienteTemporal, usuario
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
+            const update = await eliminarTicketClienteIDS({idTicketSorteo, idClienteTemporal}, usuario, {transaction : t});
+            return update
             });
             return transaccionProcesada;
        
@@ -469,7 +536,9 @@ const constructorSorteoService = ({logger}) => {
         obtenerTicketsByIdSorteo,
         desEncriptarIdSorteo,
         obtenerDetalleClienteXSorteo,
-        obtenerDetalleSorteoClienteID
+        obtenerDetalleSorteoClienteID,
+        updateAPlicarEstadoDetalleCliente,
+        eliminarTicketClienteIds
     }
 } 
 
