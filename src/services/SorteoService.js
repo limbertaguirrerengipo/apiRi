@@ -23,8 +23,10 @@ const constructorSorteoService = ({logger}) => {
         obtenerSorteoById,
         EliminarSorteoById,
         AgregarListaImagenes,
+        AgregarSorteoListaCobroQr,
         obtenerlistaSorteoByFecha,
         obtenerListSorteoImagenesById,
+        obtenerImagenQrSorteosTiposPagosXSorteoId,
         obtenerListaTipoPagoDisponibles,
         agregarListTicketsSorteoMasivo,
         obtenerCantidadSorteosRegistrados,
@@ -32,7 +34,8 @@ const constructorSorteoService = ({logger}) => {
         obtenerDetalleClienteXSorteoId,
         obtenerDetalleSorteoClienteId,
         TicketSorteoClienteXIds,
-        eliminarTicketClienteIDS
+        eliminarTicketClienteIDS,
+        obtenerTodosTicketsSorteoId
     } = require('../repositorio/SorteoRepositorio');
     const {
         registrarCliente
@@ -40,7 +43,7 @@ const constructorSorteoService = ({logger}) => {
     const dbAdministrativoFlujoConection = require('../models/dbRifa/dbAdministrativoFlujoConection')
     const {GuardarFotoFisico} =require('../utils/guardarArchivo');
     
-    const registrarSorteo = async({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, archivos, usuario}) => {
+    const registrarSorteo = async({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, archivos, imageCobros, usuario}) => {
         const nombre = 'registrarSorteo'
         const log = {
             layerMethod: {
@@ -57,11 +60,15 @@ const constructorSorteoService = ({logger}) => {
         const file= archivos;
         try {
             logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            
 
             const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
                 const idSorteo = await registrarSorteoRepo({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, usuario},{transaction : t});
+                const listaurlCobro = await guardarArchivoImagenCobroQr({listaImg:imageCobros, idSorteo : idSorteo, usuario});
+
                 const listaUrlObj = await guardarArchivo({archivos:file, idSorteo : idSorteo, usuario});
                 await AgregarListaImagenes(listaUrlObj, {transaction: t })
+                await AgregarSorteoListaCobroQr(listaurlCobro, {transaction: t })
                 return true;
             });
             return transaccionProcesada;
@@ -179,6 +186,50 @@ const constructorSorteoService = ({logger}) => {
             throw(error);
         }
     }
+    const guardarArchivoImagenCobroQr = async({listaImg, idSorteo, usuario}) => {
+        const nombre = 'guardarArchivoImagenCobroQr'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                idSorteo, usuario
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+          
+            const llaveValorDocumento= 'base64';
+            let prefijoArchivo= usuario;
+            let nameSubrutaArchivo = 'sorteo';
+            let nameSubrutaArchivo2 = obtenerCodigoFormateadoAñoCodigo({codigoStringRegex: "000000", numeroValorEntero: idSorteo})
+
+            const archivosGuardar = [];
+            const subRutaArchivo = `sorteo/cobro/${new Date().getFullYear()}/${nameSubrutaArchivo2}/`;
+            for(let documento of listaImg){
+                let id = 0
+                id= generateUniqueId5Dig();
+                const rutaImagenRegistrada = await GuardarFotoFisico({base64: documento[llaveValorDocumento], nombreArchivo: id +documento.nombreArchivo +'_' +prefijoArchivo, extension: documento.extension, subRutaArchivo : subRutaArchivo})
+                archivosGuardar.push({
+                    idSorteo: idSorteo,
+                    urlImagen: rutaImagenRegistrada,
+                    extension: documento.extension,
+                    idTipoPago:documento.idTipoPago
+                });
+            }
+            return archivosGuardar;
+
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
+
     const codigoGenerado = ({codigoStringRegex, numeroValorEntero}) => {
         const cantidadCerosMostrar = codigoStringRegex.length - numeroValorEntero.toString().length;
         return codigoStringRegex.substring(0, cantidadCerosMostrar);
@@ -239,8 +290,9 @@ const constructorSorteoService = ({logger}) => {
                 if(obj && obj.estado === ESTADO_SOLICITUD.INACTIVO) throw new Error('El Ticket de sorteo ya no se encuentra disponible');
                 const urlServer = config.serverConfigurations.url + '/static/';
                 const lista = await obtenerListSorteoImagenesById({idSorteo, urlServer},{transaction : t}); 
+                const imagesCobros= await obtenerImagenQrSorteosTiposPagosXSorteoId({idSorteo, urlServer},{transaction : t}); 
                 const listTipoPagos = await obtenerListaTipoPagoDisponibles({urlServerImage: urlServer }, {transaction : t})
-                obj ={ ...obj, listImagenes: lista, listTipoPagos}
+                obj ={ ...obj, listImagenes: lista, listTipoPagos, imagesCobros}
                 return obj
             });
             return transaccionProcesada;
@@ -251,7 +303,7 @@ const constructorSorteoService = ({logger}) => {
             throw(error);
         }
     }
-    const registrarTickets = async({idSorteo, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago }) => {
+    const registrarTickets = async({idSorteo, carnetIdentidad, cantidadTicket, nombreCompleto, codePais, nroCelular, correo, idTipoPago, lugarParticipa, uploadComprobante }) => {
         const nombre = 'registrarTickets'
         const log = {
             layerMethod: {
@@ -277,8 +329,20 @@ const constructorSorteoService = ({logger}) => {
                  let TotalCalculado = parseFloat(obj.precioUnitario) * parseFloat(cantidadTicket);
                  ////verificar la cantidad ticket disponibles... 
                  await validarCantidadTicketDisponibles({idSorteo, cantidadLimiteTicket, nuevaCantidadTickets: cantidadTicket })
-
-                const idClienteTemporal = await registrarCliente({ carnetIdentidad, nombreCompleto, codePais, nroCelular, correo, montoTotal:TotalCalculado, idTipoPago },{transaction: t });
+                 const imageComprobante = !uploadComprobante? null: await guardarComprobanteCliente({imagenComprobante:uploadComprobante, idSorteo,carnet:carnetIdentidad})
+                
+                const idClienteTemporal = await registrarCliente({
+                    carnetIdentidad,
+                    nombreCompleto,
+                    codePais,
+                    nroCelular,
+                    correo,
+                    montoTotal:TotalCalculado,
+                    idTipoPago,
+                    lugarParticipa,
+                    urlImagen:imageComprobante?.urlImagen || null,
+                    extImagen:imageComprobante?.extension || null
+                },{transaction: t });
                 const listTicketsGenerados = generarListTickets({idSorteo, cantidadTicket, idClienteTemporal, monto: PrecioUni, idTipoPago, idEstadoPago:ESTADO_PAGO.PENDIENTE }); 
                 const lista = await agregarListTicketsSorteoMasivo(listTicketsGenerados,{transaction:t});
                 let codigoTick = lista.map(x => {
@@ -301,6 +365,45 @@ const constructorSorteoService = ({logger}) => {
             });
             return transaccionProcesada;
        
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
+
+    const guardarComprobanteCliente = async({imagenComprobante, idSorteo, carnet}) => {
+        const nombre = 'guardarComprobanteCliente'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                idSorteo
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+          
+            const llaveValorDocumento= 'base64';
+            let nameSubrutaArchivo2 = obtenerCodigoFormateadoAñoCodigo({codigoStringRegex: "00", numeroValorEntero: idSorteo})
+            const subRutaArchivo = `cliente/comprobante/${new Date().getFullYear()}/${nameSubrutaArchivo2}/`;
+           
+                let id = 0
+                id= generateUniqueId5Dig();
+                const rutaImagenRegistrada = await GuardarFotoFisico({base64: imagenComprobante[llaveValorDocumento], nombreArchivo: id +'_'+carnet, extension: imagenComprobante.extension, subRutaArchivo : subRutaArchivo})
+                const  archivosGuardar ={
+                    idSorteo: idSorteo,
+                    urlImagen: rutaImagenRegistrada,
+                    extension: imagenComprobante.extension
+                };
+        
+            return archivosGuardar;
+
         } catch (error) {
             logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
             logger.writeExceptionLog(error, { ...log.layerMethod });
@@ -421,7 +524,8 @@ const constructorSorteoService = ({logger}) => {
         try {
             logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
             const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
-            const listado = await obtenerDetalleClienteXSorteoId({idSorteo}, {transaction : t});
+            const urlServer = config.serverConfigurations.url + '/static/';
+            const listado = await obtenerDetalleClienteXSorteoId({idSorteo, urlServer}, {transaction : t});
             return listado
             });
             return transaccionProcesada;
@@ -526,6 +630,68 @@ const constructorSorteoService = ({logger}) => {
         }
     }
 
+    const obtenerTodosSorteoId = async({idSorteo}) => {
+        const nombre = 'obtenerTodosSorteoId'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                idSorteo
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
+            const lista = await obtenerTodosTicketsSorteoId({idSorteo}, {transaction : t});
+            let codigoTick = lista.map(x => {
+                return { ...x, idTicket: String(parseInt(x.idTicket)).padStart(config.sorteo.longitudTicketsCeros, '0') };
+            });
+            return codigoTick
+            });
+            return transaccionProcesada;
+       
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
+
+    const obtenerTipoPagos = async() => {
+        const nombre = 'obtenerTipoPagos'
+        const log = {
+            layerMethod: {
+                layer: fileName,
+                method: nombre
+            },
+            messageInicio: `Inicio de la funcion ${nombre}`,
+            messageFin: `Fin de la funcion ${nombre}`,
+            messageError: `Error de la funcion ${nombre}`,
+            parametrosEntrada: {
+                
+            }
+        }
+        try {
+            logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+            const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
+                const urlServer = config.serverConfigurations.url + '/static/';
+                const listTipoPagos = await obtenerListaTipoPagoDisponibles({urlServerImage: urlServer }, {transaction : t})
+                return listTipoPagos
+            });
+            return transaccionProcesada;
+       
+        } catch (error) {
+            logger.writeErrorText(`${log.messageError}, error: ${JSON.stringify(error, null, 4)}`, { ...log.layerMethod });
+            logger.writeExceptionLog(error, { ...log.layerMethod });
+            throw(error);
+        }
+    }
+
     return {
         registrarSorteo,
         ActualizarEstadoSorteo,
@@ -538,7 +704,9 @@ const constructorSorteoService = ({logger}) => {
         obtenerDetalleClienteXSorteo,
         obtenerDetalleSorteoClienteID,
         updateAPlicarEstadoDetalleCliente,
-        eliminarTicketClienteIds
+        eliminarTicketClienteIds,
+        obtenerTodosSorteoId,
+        obtenerTipoPagos
     }
 } 
 

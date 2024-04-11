@@ -2,7 +2,7 @@ const dbAdministrativoFlujoConection = require('../models/dbRifa/dbAdministrativ
 const {Op, Sequelize,fn} = require('sequelize');
 const { ClienteTemporalModel } = require('../models/dbRifa/ClienteTemporalModel'); 
 
-const registrarCliente = async ({carnetIdentidad, nombreCompleto, codePais, nroCelular, correo, montoTotal, idTipoPago },{transaction=null}) => {
+const registrarCliente = async ({carnetIdentidad, nombreCompleto, codePais, nroCelular, correo, montoTotal, idTipoPago, lugarParticipa, urlImagen, extImagen },{transaction=null}) => {
     try {
         const objSort = await ClienteTemporalModel.create({
             carnetIdentidad,
@@ -12,6 +12,9 @@ const registrarCliente = async ({carnetIdentidad, nombreCompleto, codePais, nroC
             correo,
             montoTotal,
             idTipoPago,
+            lugarParticipa,
+            urlImagen,
+            extImagen,
             fechaCreacion: fn('GETDATE'),
             usuarioCreacion: 'SYSTEM'
         },{

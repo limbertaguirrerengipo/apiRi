@@ -2,6 +2,7 @@ const dbAdministrativoFlujoConection = require('../models/dbRifa/dbAdministrativ
 const {SorteoModel} = require('../models/dbRifa/SorteoModel');
 const { TipoPagoModel } = require('../models/dbRifa/TipoPagoModel');
 const {SorteoImagenesModel} = require('../models/dbRifa/SorteoImagenesModel');
+const {SorteoImagenesCobroModel} = require('../models/dbRifa/SorteoImagenesCobroModel');
 const {TicketSorteoModel} = require('../models/dbRifa/TicketSorteoModel');
 const {Op, Sequelize,fn} = require('sequelize');
 const queries = require('./queries');
@@ -106,6 +107,15 @@ const AgregarListaImagenes = async (listaImagenes,{transaction=null}) => {
         throw(error)
     }
 }
+const AgregarSorteoListaCobroQr = async (listaImagenesCobro,{transaction=null}) => {
+    try {
+
+      return await  SorteoImagenesCobroModel.bulkCreate( listaImagenesCobro, { transaction })
+
+    } catch (error) {
+        throw(error)
+    }
+}
 const obtenerlistaSorteoByFecha = async({fechaInicio, fechaFin},{transaction=null}) => {
     try {
 
@@ -147,6 +157,27 @@ const obtenerListSorteoImagenesById = async({idSorteo, urlServer},{transaction=n
             ${urlServidorString} as urlImagen,
             I.nombreImagen
            from SorteoImagenes I where I.idSorteo= :idSorteo`;
+                    const jsonConfiguration = {
+                        type: 'SELECT',
+                        replacements: {
+                        idSorteo: idSorteo
+                    }
+                    };
+                 const lista = await  dbAdministrativoFlujoConection.query(sql, jsonConfiguration);
+                 return lista;
+    } catch (error) {
+        throw(error)
+    }
+}
+const obtenerImagenQrSorteosTiposPagosXSorteoId = async({idSorteo, urlServer},{transaction=null}) => {
+    try {
+        const urlServidorString = `'${urlServer}'` + '+I.urlImagen' 
+        const sql = `SELECT
+            I.idSorteoImagenesCobro,
+            ${urlServidorString} as urlImagen,
+            I.extension,
+            I.idTipoPago
+           from SorteoImagenesCobro I where I.idSorteo= :idSorteo`;
                     const jsonConfiguration = {
                         type: 'SELECT',
                         replacements: {
@@ -224,12 +255,17 @@ const obtenerDetalleTicketByIdStatus = async({idSorteo},{transaction=null}) => {
         throw(error)
     }
 }
-const obtenerDetalleClienteXSorteoId = async({idSorteo},{transaction=null}) => {
+const obtenerDetalleClienteXSorteoId = async({idSorteo, urlServer},{transaction=null}) => {
     try {
-
+        const urlServidorString = `'${urlServer}'` + '+c.urlImagen' 
         const sql = `SELECT 
                             DISTINCT c.idClienteTemporal,
                             c.nombreCompleto,
+                            CASE 
+                                WHEN c.urlImagen IS NULL THEN c.urlImagen
+                                ELSE  ${urlServidorString}
+                            END AS urlImagen,
+                            c.extImagen,
                             c.carnetIdentidad,
                             c.codePais,
                             c.nroCelular as celular,
@@ -319,7 +355,38 @@ const eliminarTicketClienteIDS = async ({idTicketSorteo,idClienteTemporal}, usua
         throw(error)
     }
 }
+const obtenerTodosTicketsSorteoId = async({idSorteo},{transaction=null}) => {
+    try {
 
+        const sql = `SELECT 
+                            dt.idTicketSorteo,
+                            c.idClienteTemporal,
+                            c.nombreCompleto,
+                            dt.idTicketSorteo as idTicket,
+                            c.carnetIdentidad,
+                            c.codePais,
+                            c.nroCelular as celular,
+                            (SELECT nombre FROM EstadoPago where idEstadoPago = dt.idEstadoPago) as estadoPago,
+                            CONVERT(varchar(10), c.fechaCreacion, 105) + ' ' + CONVERT(varchar(8), c.fechaCreacion, 108) AS fechaRegistro,
+                            s.idSorteo
+                        FROM TicketSorteo dt 
+                        INNER join Sorteo s on s.idSorteo = dt.idSorteo
+                        INNER JOIN ClienteTemporal c on c.idClienteTemporal=dt.idClienteTemporal
+                        WHERE  dt.idEstadoPago in (${ESTADO_PAGO.APLICADO}, ${ESTADO_PAGO.PENDIENTE}) and s.idSorteo =${idSorteo}
+                        `;
+                    const jsonConfiguration = {
+                        type: 'SELECT',
+                        replacements: {
+
+                    }
+                    };
+                 const lista = await  dbAdministrativoFlujoConection.query(sql, jsonConfiguration);
+                 return lista;
+
+    } catch (error) {
+        throw(error)
+    }
+}
 
 module.exports = {
     registrarSorteoRepo,
@@ -329,6 +396,7 @@ module.exports = {
     AgregarListaImagenes,
     obtenerlistaSorteoByFecha,
     obtenerListSorteoImagenesById,
+    obtenerImagenQrSorteosTiposPagosXSorteoId,
     obtenerListaTipoPagoDisponibles,
     agregarListTicketsSorteoMasivo,
     obtenerCantidadSorteosRegistrados,
@@ -336,5 +404,7 @@ module.exports = {
     obtenerDetalleClienteXSorteoId,
     obtenerDetalleSorteoClienteId,
     TicketSorteoClienteXIds,
-    eliminarTicketClienteIDS
+    eliminarTicketClienteIDS,
+    obtenerTodosTicketsSorteoId,
+    AgregarSorteoListaCobroQr
 }

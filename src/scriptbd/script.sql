@@ -49,6 +49,9 @@ create table ClienteTemporal(
   correo varchar(100),
   montoTotal decimal(12,2) not null,
   idTipoPago int not null,
+  lugarParticipa VARCHAR(100),
+  urlImagen VARCHAR(100),
+  extImagen VARCHAR(10),
   fechaCreacion dateTime default GetDate(),
   fechaModificacion dateTime,
   usuarioCreacion  varchar(50) not null,
@@ -69,9 +72,20 @@ create table TicketSorteo(
   usuarioModificacion  varchar(50)
 )
 go
+create table SorteoImagenesCobro(
+  idSorteoImagenesCobro int primary key identity not null,
+  idSorteo int not null,
+  urlImagen VARCHAR(MAX),
+  extension VARCHAR(10),
+  idTipoPago int not null
+)
+go
 INSERT into TipoPago (idTipoPago, nombre, descripcion, urlImagen, estado) VALUES(1, 'PAGO QR','pago con transferencia','pagos/qr.png',1)
 INSERT into TipoPago (idTipoPago, nombre, descripcion, urlImagen, estado) VALUES(2, 'CREDITO/DEBITO','Pago bancario','pagos/debito.png',1)
 INSERT into TipoPago (idTipoPago, nombre, descripcion, urlImagen, estado) VALUES(3, 'EFECTIVO','pago con transferencia','pagos/efectivo.png',1)
+INSERT into TipoPago (idTipoPago, nombre, descripcion, urlImagen, estado) VALUES(4, 'TIGO MONEY QR','Adjunte por comprobante QR','pagos/tigoMoneyQr.png',1)
+INSERT into TipoPago (idTipoPago, nombre, descripcion, urlImagen, estado) VALUES(5, 'COMPROBANTE QR','Adjunte por comprobante QR','pagos/comprobanteQR.png',1)
+
 GO
 create table EstadoPago(
   idEstadoPago int primary key not null,

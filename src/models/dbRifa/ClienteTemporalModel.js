@@ -44,7 +44,21 @@ exports.ClienteTemporalModel = databaseConnection.define('ClienteTemporalModel',
         field:'idTipoPago',
         allowNull: false,
       },
-
+      lugarParticipa: {
+        type: DataTypes.STRING(100),
+        field:'lugarParticipa',
+        allowNull: true,
+      },
+      urlImagen: {
+        type: DataTypes.STRING(100),
+        field:'urlImagen',
+        allowNull: true,
+      },
+      extImagen: {
+        type: DataTypes.STRING(10),
+        field:'extImagen',
+        allowNull: true,
+      },
       fechaCreacion: {
         type: DataTypes.DATE,
         field:'fechaCreacion',
