@@ -127,7 +127,7 @@ const obtenerlistaSorteoByFecha = async({fechaInicio, fechaFin},{transaction=nul
                         s.fechaSorteo,
                         s.idMoneda,
                         s.descripcion,
-                        (SELECT COUNT(*)  FROM TicketSorteo tk where tk.idSorteo= s.idSorteo and tk.idEstadoPago in(${ESTADO_SOLICITUD.ACTIVO}, ${ESTADO_SOLICITUD.INACTIVO})) as cantidadReservados,
+                        (SELECT COUNT(*)  FROM TicketSorteo tk where tk.idSorteo= s.idSorteo and tk.idClienteTemporal != 0 and tk.idEstadoPago in(${ESTADO_SOLICITUD.ACTIVO}, ${ESTADO_SOLICITUD.INACTIVO})) as cantidadReservados,
                         s.estado,
                         CONVERT(varchar(10), s.fechaCreacion, 105) + ' ' + CONVERT(varchar(8), s.fechaCreacion, 108) AS fechaRegistro
                         from Sorteo s
@@ -222,18 +222,51 @@ const agregarListTicketsSorteoMasivo = async (listTicketsSorteo,{transaction=nul
         throw(error)
     }
 }
-
-const obtenerCantidadSorteosRegistrados = async({idSorteo}) => {
+const ActualizarTicketSorteoIDS = async ({idTicketSorteo, idSorteo, idClienteTemporal, idTipoPago},{transaction=null}) => {
     try {
-        return await TicketSorteoModel.findAll({
+        return await TicketSorteoModel.update({
+            idClienteTemporal:idClienteTemporal,
+            idTipoPago:idTipoPago,
+            fechaModificacion: fn('GETDATE'),
+        },{
             where: {
-                idSorteo:idSorteo,
-                idEstadoPago: {
-                    [Op.in]: [ESTADO_PAGO.APLICADO, ESTADO_PAGO.PENDIENTE] 
-                }
+                idTicketSorteo:idTicketSorteo,
+                idSorteo: idSorteo,
             },
-            raw: true
-        });
+            transaction: transaction
+        })
+
+    } catch (error) {
+        throw(error)
+    }
+}
+
+const obtenerTicketRandonSorteo = async({idSorteo, cantidadTicket}) => {
+    try {
+        const sql = `SELECT 
+              TOP :cantidadTicket 
+              ts.idTicketSorteo,
+              ts.idSorteo,
+              ts.nroTicket,
+              ts.idClienteTemporal,
+              ts.idTipoPago,
+              ts.idEstadoPago,
+              ts.fechaModificacion
+
+        FROM TicketSorteo AS ts 
+        WHERE ts.idSorteo = :idSorteo AND
+            ts.idClienteTemporal = 0 AND
+            ts.idEstadoPago IN (${ESTADO_PAGO.APLICADO}, ${ESTADO_PAGO.PENDIENTE})
+        ORDER BY NEWID();`;
+                const jsonConfiguration = {
+                    type: 'SELECT',
+                    replacements: {
+                    idSorteo: idSorteo,
+                    cantidadTicket:cantidadTicket
+                }
+                };
+             const lista = await  dbAdministrativoFlujoConection.query(sql, jsonConfiguration);
+        return lista;
     } catch (error) {
         throw(error)
     }
@@ -340,7 +373,9 @@ const TicketSorteoClienteXIds = async ({idTicketSorteo,idClienteTemporal,idEstad
 const eliminarTicketClienteIDS = async ({idTicketSorteo,idClienteTemporal}, usuario, {transaction=null}) => {
     try {
         return await TicketSorteoModel.update({
-            idEstadoPago: ESTADO_PAGO.ELIMINADO,
+            idEstadoPago: ESTADO_PAGO.PENDIENTE,
+            idClienteTemporal:0,
+            idTipoPago:0,
             usuarioModificacion: usuario,
             fechaModificacion: fn('GETDATE')
         },{
@@ -368,6 +403,7 @@ const obtenerTodosTicketsSorteoId = async({idSorteo},{transaction=null}) => {
                             c.nroCelular as celular,
                             (SELECT nombre FROM EstadoPago where idEstadoPago = dt.idEstadoPago) as estadoPago,
                             CONVERT(varchar(10), c.fechaCreacion, 105) + ' ' + CONVERT(varchar(8), c.fechaCreacion, 108) AS fechaRegistro,
+                            c.lugarParticipa,
                             s.idSorteo
                         FROM TicketSorteo dt 
                         INNER join Sorteo s on s.idSorteo = dt.idSorteo
@@ -399,12 +435,13 @@ module.exports = {
     obtenerImagenQrSorteosTiposPagosXSorteoId,
     obtenerListaTipoPagoDisponibles,
     agregarListTicketsSorteoMasivo,
-    obtenerCantidadSorteosRegistrados,
+    obtenerTicketRandonSorteo,
     obtenerDetalleTicketByIdStatus,
     obtenerDetalleClienteXSorteoId,
     obtenerDetalleSorteoClienteId,
     TicketSorteoClienteXIds,
     eliminarTicketClienteIDS,
     obtenerTodosTicketsSorteoId,
-    AgregarSorteoListaCobroQr
+    AgregarSorteoListaCobroQr,
+    ActualizarTicketSorteoIDS
 }

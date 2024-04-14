@@ -12,19 +12,24 @@ exports.TicketSorteoModel = databaseConnection.define('TicketSorteoModel', {
     idSorteo: {
         type: DataTypes.INTEGER,
         field:'idSorteo',
-        primaryKey: true,
+        primaryKey: false,
+        allowNull: false,
+    },
+    nroTicket: {
+        type: DataTypes.INTEGER,
+        field:'nroTicket',
         allowNull: false,
     },
     idClienteTemporal: {
         type: DataTypes.INTEGER,
         field:'idClienteTemporal',
-        primaryKey: true,
+        primaryKey: false,
         allowNull: false,
     },
     monto: {
         type: DataTypes.DECIMAL,
         field:'monto',
-        primaryKey: true,
+        primaryKey: false,
         allowNull: false,
     },
     idTipoPago: {

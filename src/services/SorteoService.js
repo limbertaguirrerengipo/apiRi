@@ -29,13 +29,14 @@ const constructorSorteoService = ({logger}) => {
         obtenerImagenQrSorteosTiposPagosXSorteoId,
         obtenerListaTipoPagoDisponibles,
         agregarListTicketsSorteoMasivo,
-        obtenerCantidadSorteosRegistrados,
+        obtenerTicketRandonSorteo,
         obtenerDetalleTicketByIdStatus,
         obtenerDetalleClienteXSorteoId,
         obtenerDetalleSorteoClienteId,
         TicketSorteoClienteXIds,
         eliminarTicketClienteIDS,
-        obtenerTodosTicketsSorteoId
+        obtenerTodosTicketsSorteoId,
+        ActualizarTicketSorteoIDS
     } = require('../repositorio/SorteoRepositorio');
     const {
         registrarCliente
@@ -60,10 +61,12 @@ const constructorSorteoService = ({logger}) => {
         const file= archivos;
         try {
             logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
-            
+            const listaTickets = new Array(cantidadTicket).fill().map((_, i) => i + 1);
 
             const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
                 const idSorteo = await registrarSorteoRepo({titulo,cantidadTicket, precioUnitario, idMoneda, descripcion, usuario},{transaction : t});
+                const ticketsMasivo = await armarobjTickets({idSorteo, monto:precioUnitario, usuario, listArray:listaTickets});
+                const add = await agregarListTicketsSorteoMasivo(ticketsMasivo,{transaction: t });
                 const listaurlCobro = await guardarArchivoImagenCobroQr({listaImg:imageCobros, idSorteo : idSorteo, usuario});
 
                 const listaUrlObj = await guardarArchivo({archivos:file, idSorteo : idSorteo, usuario});
@@ -78,6 +81,24 @@ const constructorSorteoService = ({logger}) => {
             logger.writeExceptionLog(error, { ...log.layerMethod });
             throw(error);
         }
+    }
+    const armarobjTickets = ({idSorteo, monto, usuario, listArray}) =>{
+        let lista = [];
+        for (const elemento of listArray) {
+            let obj ={
+                idSorteo:idSorteo,
+                nroTicket:elemento, 
+                idClienteTemporal:0,
+                monto:monto,
+                idTipoPago:0,
+                idEstadoPago:ESTADO_PAGO.PENDIENTE,
+                usuarioCreacion: usuario,
+                fecha:fn('GETDATE'),
+                fechaCreacion: fn('GETDATE')
+            }
+            lista.push(obj);
+        }
+        return lista;
     }
     const ActualizarEstadoSorteo = async({idSorteo, cantidadTicket, estado,usuario}) => {
         const nombre = 'ActualizarEstadoSorteo'
@@ -319,18 +340,18 @@ const constructorSorteoService = ({logger}) => {
         }
         try {
             logger.writeInfoText(`${log.messageInicio}, parametros: ${JSON.stringify({...log.parametrosEntrada}, null, 4)}`, { ...log.layerMethod });
+             
+
             const transaccionProcesada = await dbAdministrativoFlujoConection.transaction(async(t) => {
                 let obj = await obtenerSorteoById({idSorteo}, {transaction : t});
                 if(obj === null) throw new Error('No existe el Ticket de sorteo.');
                 if(obj && obj.estado === ESTADO_SOLICITUD.INACTIVO) throw new Error('El Ticket de sorteo ya no se encuentra disponible');
                 //pagar POR TIPO PAGO
-                let cantidadLimiteTicket = parseInt(obj.cantidadTicket);
-                 let PrecioUni = obj.precioUnitario;
                  let TotalCalculado = parseFloat(obj.precioUnitario) * parseFloat(cantidadTicket);
-                 ////verificar la cantidad ticket disponibles... 
-                 await validarCantidadTicketDisponibles({idSorteo, cantidadLimiteTicket, nuevaCantidadTickets: cantidadTicket })
+                ////verificar la cantidad ticket disponibles... 
+                const ticketsList =   await validarObtenerCantidadTicketDisponibles({idSorteo, nuevaCantidadTickets: cantidadTicket })
+
                  const imageComprobante = !uploadComprobante? null: await guardarComprobanteCliente({imagenComprobante:uploadComprobante, idSorteo,carnet:carnetIdentidad})
-                
                 const idClienteTemporal = await registrarCliente({
                     carnetIdentidad,
                     nombreCompleto,
@@ -343,10 +364,10 @@ const constructorSorteoService = ({logger}) => {
                     urlImagen:imageComprobante?.urlImagen || null,
                     extImagen:imageComprobante?.extension || null
                 },{transaction: t });
-                const listTicketsGenerados = generarListTickets({idSorteo, cantidadTicket, idClienteTemporal, monto: PrecioUni, idTipoPago, idEstadoPago:ESTADO_PAGO.PENDIENTE }); 
-                const lista = await agregarListTicketsSorteoMasivo(listTicketsGenerados,{transaction:t});
-                let codigoTick = lista.map(x => {
-                    return { idTicket: String(parseInt(x.idTicketSorteo)).padStart(config.sorteo.longitudTicketsCeros, '0') };
+             
+                await listUpdateTicketClientes({idClienteTemporal, idTipoPago, ticketsList},{transaction: t});
+                let codigoTick = ticketsList.map(x => {
+                    return { idTicket: String(parseInt(x.nroTicket)).padStart(config.sorteo.longitudTicketsCeros, '0') };
                 });
                 //enviar mail o wpp
                 enviarMensaje({
@@ -370,6 +391,20 @@ const constructorSorteoService = ({logger}) => {
             logger.writeExceptionLog(error, { ...log.layerMethod });
             throw(error);
         }
+    }
+    const listUpdateTicketClientes = async ({idClienteTemporal, idTipoPago, ticketsList},{transaction=null}) =>{
+        try {
+        // ActualizarTicketSorteoIDS
+
+        for (const item of ticketsList) {
+            await ActualizarTicketSorteoIDS({idTicketSorteo:parseInt(item.idTicketSorteo), idSorteo: item.idSorteo, idClienteTemporal, idTipoPago},{transaction})
+            const n = 0;
+        }
+
+        } catch (error) {
+            throw(error);
+        }
+
     }
 
     const guardarComprobanteCliente = async({imagenComprobante, idSorteo, carnet}) => {
@@ -427,16 +462,16 @@ const constructorSorteoService = ({logger}) => {
         });
         return lista;
     }
-    const validarCantidadTicketDisponibles = async ({idSorteo, cantidadLimiteTicket, nuevaCantidadTickets }) => {
+    const validarObtenerCantidadTicketDisponibles = async ({idSorteo, nuevaCantidadTickets }) => {
         try{
-           const listTicket = await obtenerCantidadSorteosRegistrados({idSorteo});
-            let nroList = nuevaCantidadTickets + listTicket.length 
-           if( nroList <= cantidadLimiteTicket){
+           const listTicket = await obtenerTicketRandonSorteo({idSorteo, cantidadTicket: nuevaCantidadTickets});
+            
+           if( nuevaCantidadTickets === listTicket.length ){
               //todo okey
-               let n=0;
+              return listTicket;
            }else{
-             let disponible = cantidadLimiteTicket - listTicket.length;
-              throw new Error(`Solo hay ${disponible} tickets Disponibles, ustede `);
+             let disponible = listTicket.length;
+              throw new Error(`Solo hay ${disponible} tickets disponibles.`);
            }
 
         } catch (error) {

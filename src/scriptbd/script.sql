@@ -58,19 +58,22 @@ create table ClienteTemporal(
   usuarioModificacion  varchar(50)
 )
 go
-create table TicketSorteo(
-  idTicketSorteo bigint primary key identity not null,
-  idSorteo int not null,
-  idClienteTemporal int not null,
-  monto decimal(12,2) not null,
-  idTipoPago int not null,   -- 1 QR, 2 credito/debito, 3 Efectivo
-  idEstadoPago int not null, --1 aplicado, 2 pendiente, 3 Eliminado
-  fecha datetime null,
-  fechaCreacion dateTime default GetDate(),
-  fechaModificacion dateTime,
-  usuarioCreacion  varchar(50) not null,
-  usuarioModificacion  varchar(50)
-)
+CREATE TABLE TicketSorteo (
+  idTicketSorteo bigint PRIMARY KEY IDENTITY NOT NULL,
+  idSorteo int NOT NULL,
+  nroTicket int NOT NULL,
+  idClienteTemporal int NOT NULL,
+  monto decimal(12,2) NOT NULL,
+  idTipoPago int NOT NULL,    -- 1 QR, 2 credito/debito, 3 Efectivo
+  idEstadoPago int NOT NULL,   --1 aplicado, 2 pendiente, 3 Eliminado
+  fecha datetime NULL,
+  fechaCreacion datetime DEFAULT GETDATE(),
+  fechaModificacion datetime,
+  usuarioCreacion varchar(50) NOT NULL,
+  usuarioModificacion varchar(50),
+  CONSTRAINT UK_TicketSorteo_IdSorteo_NroTicket UNIQUE (idSorteo, nroTicket)
+);
+
 go
 create table SorteoImagenesCobro(
   idSorteoImagenesCobro int primary key identity not null,
