@@ -26,6 +26,7 @@ const constructorSorteoService = ({logger}) => {
         AgregarSorteoListaCobroQr,
         obtenerlistaSorteoByFecha,
         obtenerListSorteoImagenesById,
+        obtenerCantidadTicketDiponibles,
         obtenerImagenQrSorteosTiposPagosXSorteoId,
         obtenerListaTipoPagoDisponibles,
         agregarListTicketsSorteoMasivo,
@@ -311,9 +312,10 @@ const constructorSorteoService = ({logger}) => {
                 if(obj && obj.estado === ESTADO_SOLICITUD.INACTIVO) throw new Error('El Ticket de sorteo ya no se encuentra disponible');
                 const urlServer = config.serverConfigurations.url + '/static/';
                 const lista = await obtenerListSorteoImagenesById({idSorteo, urlServer},{transaction : t}); 
+                const objSorteo = await obtenerCantidadTicketDiponibles({idSorteo}, {transaction:t});
                 const imagesCobros= await obtenerImagenQrSorteosTiposPagosXSorteoId({idSorteo, urlServer},{transaction : t}); 
                 const listTipoPagos = await obtenerListaTipoPagoDisponibles({urlServerImage: urlServer }, {transaction : t})
-                obj ={ ...obj, listImagenes: lista, listTipoPagos, imagesCobros}
+                obj ={ ...obj,cantidadTicketDisponible:objSorteo.cantidadDisponible, listImagenes: lista, listTipoPagos, imagesCobros}
                 return obj
             });
             return transaccionProcesada;

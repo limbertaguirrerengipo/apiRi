@@ -169,6 +169,26 @@ const obtenerListSorteoImagenesById = async({idSorteo, urlServer},{transaction=n
         throw(error)
     }
 }
+const obtenerCantidadTicketDiponibles = async({idSorteo},{transaction=null}) => {
+    try {
+        const sql = `SELECT COUNT(*) as cantidadDisponible
+        FROM bdRifa.dbo.TicketSorteo tk 
+        WHERE 
+         tk.idClienteTemporal = 0 AND
+         tk.idEstadoPago IN (${ESTADO_PAGO.APLICADO}, ${ESTADO_PAGO.PENDIENTE}) and
+        tk.idSorteo= :idSorteo`;
+                    const jsonConfiguration = {
+                        type: 'SELECT',
+                        replacements: {
+                        idSorteo: idSorteo
+                    }
+                    };
+                 const obj = await  dbAdministrativoFlujoConection.query(sql, jsonConfiguration);
+                 return obj[0];
+    } catch (error) {
+        throw(error)
+    }
+}
 const obtenerImagenQrSorteosTiposPagosXSorteoId = async({idSorteo, urlServer},{transaction=null}) => {
     try {
         const urlServidorString = `'${urlServer}'` + '+I.urlImagen' 
@@ -432,6 +452,7 @@ module.exports = {
     AgregarListaImagenes,
     obtenerlistaSorteoByFecha,
     obtenerListSorteoImagenesById,
+    obtenerCantidadTicketDiponibles,
     obtenerImagenQrSorteosTiposPagosXSorteoId,
     obtenerListaTipoPagoDisponibles,
     agregarListTicketsSorteoMasivo,
