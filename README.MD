@@ -70,3 +70,11 @@ jwt.verify(token, secretKey, (err, decoded) => {
   }
 });
 
+- azure limbertaguirre@outlook.es
+- server : servidornapoles   - servidornapoles.database.windows.net
+- bd: bdRifa
+- user: adminnapoles
+- pss: napoles$123
+
+-AWS , AMAZON EC2
+
