@@ -1,0 +1,9 @@
+{
+  "development": {
+      "JWT_SECRET": "SionServices",
+      "ENCRYPTION_METHOD": "aes-256-cbc",
+      "ENCRYPTION_KEY": "FBDF08E0405E55C4FCA0729AF055AC75",
+      "ENCRYPT_KEY_WEB": "ceF3SVT3EdWZggtzsOSjwg==",
+      "ENCRYPTION_IV": 16
+  }
+}
