@@ -1,9 +1,9 @@
 {
     "development":{
         "administrativo": {
-            "username":"sa",
-            "password": "Passw0rd",
-            "host": "10.2.10.15",
+            "username":"adminnapoles",
+            "password": "napoles$123",
+            "host": "sqlserver.cv0so264uvci.us-east-2.rds.amazonaws.com",
             "dialect": "mssql",
             "dialectOptions": {
                 "options": {

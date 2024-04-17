@@ -76,5 +76,59 @@ jwt.verify(token, secretKey, (err, decoded) => {
 - user: adminnapoles
 - pss: napoles$123
 
+------
+instancia: sqlServer
+- user: adminnapoles
+- pss: napoles$123
+- grupo seguridad: bdsecurity
+- 
+
 -AWS , AMAZON EC2
+instancia: instarifa
+clave: claveRifa
+-----------------------------
+paso 1:
+sudo chmod 400 claveRifa.pem
+
+paso:2 example
+ssh -i claveRifa.pem ubuntu@3.138.86.226 
+---------------------------------------------
+sql server 
+- server name : sqlserver.cv0so264uvci.us-east-2.rds.amazonaws.com
+- user: adminnapoles
+- pss: napoles$123
+----------------------------------------------
+--linux n server actual ---------------
+--------------------------------------------
+-paso 1 ubicas el archivo o sudo
+-  chmod 400 apirifa.pem
+-  ssh ubuntu@18.221.17.185 -i apirifa.pem
+---------------------------------------------------
+---actualizar ubuntu defecto----------------------------
+-    sudo apt update && sudo apt upgrade
+-  instalar en ubuntu
+-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+-  rreinicia el bsh
+-    source ~/.bashrc
+-    source ~/.zshrc
+-    . ~/.profile
+
+-- nvm --version
+- --instalar node ultima versio
+-   nvm install --lts
+-   
+-correr el proyecto
+-- npm start $
+--ddetener este procesi
+- ps -a
+- killall node
+
+-ver proceso
+- ps -ef
+
+
+ <!-- audivip.consultores@gmail.com 
+ Gallera2024 -->
+
+
 
