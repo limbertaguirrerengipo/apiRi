@@ -19,3 +19,15 @@ logs/general/
 
 /public/sorteo
 /public/cliente
+
+# Archivos de Configuracion en Api/Config
+/api/config/*.json
+/api/config/database.json
+/api/condig/databaseNeizan.json
+/api/config/mail.json
+/api/config/envVars.json
+/api/config/firebase.json
+api/.DS_Store
+.dockerignore
+Dockerfile
+docker-compose.yml
